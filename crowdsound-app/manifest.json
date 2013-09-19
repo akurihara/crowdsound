@@ -1,27 +1,55 @@
 {
-	"AppDescription": {
-		"en": "A tutorial app for Spotify Apps API"
-	},
-	"AppIcon": {
-		"36x18": "tutorial.png"
-	},
-	"AppName": {
-		"en": "Crowdsound"
-	},
-	"BundleIdentifier": "crowdsound-app",
-	"BundleType": "Application",
-	"BundleVersion": "0.1",
-	"Dependencies": {
-	  "api": "0.2.3",
-	  "util": "0.1.0",
-	  "resources": "0.2.2"
+  "AppDescription": {
+    "de": "Description of Crowdsound in German",
+    "en": "Description of Crowdsound",
+    "es": "Description of Crowdsound in Spanish",
+    "fr": "Description of Crowdsound in French",
+    "it": "Description of Crowdsound in Italian",
+    "nl": "Description of Crowdsound in Dutch",
+    "pl": "Description of Crowdsound in Polish",
+    "zh-Hant": "Description of Crowdsound in Chinese"
   },
-	"RequiredInterface": 1,
-	"RequiredPermissions": [
-	    "http://api.twitter.com",
-	],
-	"SupportedLanguages": [
-		"en"
-	],
-	"VendorIdentifier": "com.brown"
+  "AppIcon": {
+    "18x18": "images/icons/icon-18x18.png",
+    "36x18": "images/icons/icon-36x18.png",
+    "32x32": "images/icons/icon-32x32.png",
+    "64x64": "images/icons/icon-64x64.png",
+    "128x128": "images/icons/icon-128x128.png",
+    "300x300": "images/icons/icon-300x300.png"
+  },
+  "AppName": {
+    "de": "Crowdsound",
+    "en": "Crowdsound",
+    "es": "Crowdsound",
+    "fr": "Crowdsound",
+    "it": "Crowdsound",
+    "nl": "Crowdsound",
+    "pl": "Crowdsound",
+    "zh-Hant": "Crowdsound"
+  },
+  "BundleIdentifier": "crowdsound",
+  "BundleType": "Application",
+  "BundleVersion": "1.0.0",
+  "Dependencies": {
+    "api": "1.0.0",
+    "views": "1.10.0"
+  },
+  "RequiredPermissions": [
+    "https://google.com"
+  ],
+  "SupportedDeviceClasses": [
+    "Web",
+    "Desktop"
+  ],
+  "SupportedLanguages": [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "nl",
+    "pl",
+    "zh-Hant"
+  ],
+  "VendorIdentifier": "com.brown"
 }
