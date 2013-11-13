@@ -1,13 +1,10 @@
 
 <!DOCTYPE html>
 <head>
-<title>HTML5 Audio Tutorial</title>
 
-<link rel="stylesheet" type="text/css" href="../stylesheets/player.css">
+<link rel="stylesheet" type="text/css" href="../public/stylesheets/player.css">
 <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
-<script type="text/javascript" src="../js/player.js"></script>
-
-
+<script type="text/javascript" src="../public/js/player.js"></script>
 
 </head>
 
@@ -19,14 +16,11 @@
 
 		<div class="player">
 
-			<a class="button gradient" id="play" href="" title=""></a>
-			<a class="button gradient" id="mute" href="" title=""></a>
+			<a class="button" id="restart" href="" title=""></a>
+			<a class="button" id="play" href="" title=""></a>
+			<a class="button" id="forward" href="" title=""></a>
 
-		
 				<input type="range" id="seek" value="0" max=""/>
-	
-
-			<a class="button gradient" id="close" href="" title=""></a>
 			
 		</div><!-- / player -->
 		
@@ -34,6 +28,41 @@
 </body>
 
 <script type="text/javascript">
-		
+	// jQuery(document).ready(function() {
+
+	// 	container = $('.container');
+	// 	cover = $('.cover');
+	// 	play = $('#play');
+	// 	pause = $('#pause');
+	// 	mute = $('#mute');
+	// 	muted = $('#muted');
+	// 	close = $('#close');
+	// 	song = new Audio('../public/audio/I\'m_Gonna_Be.mp3');
+	// 	duration = song.duration;
+
+	// 	play.click(function() {
+	// 		song.play();
+	// 	});
+
+	// 	$("#seek").bind("change", function() {
+	// 		song.currentTime = $(this).val();
+	// 		$("#seek").attr("max", song.duration);
+	// 	});
+
+	// 	song.addEventListener('timeupdate',function (){
+	// 		curtime = parseInt(song.currentTime, 10);
+	// 	$("#seek").attr("value", curtime);
+	// 	});
+
+
+	// });
+	$(document).ready(function(){
+		play = $('#play');
+		song = new Audio('../public/audio/I\'m_Gonna_Be.mp3');
+		play.click(function() {
+			song.play();
+		});
+	});
+
 </script>
 </html>

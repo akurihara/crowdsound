@@ -3,9 +3,7 @@
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	box-sizing: border-box;
-	position: absolute;
 	width: 300px;
-	bottom: 10px;
 	width: 95%;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -13,3 +11,31 @@
 	padding: 5px;
 }
 
+.button {
+	display: block;
+	width: 40px;
+	height: 40px;
+	background-repeat: no-repeat;
+	float: left;
+	margin-right: 5px;
+}
+
+#play {
+	background-image: url(../img/play.png);
+}
+
+#volume {
+	background-image: url(../img/audio.png);
+}
+
+#forward {
+	background-image: url(../img/forward.png);
+}
+
+#pointer {
+	background-image: url(../img/pointer.png);
+}
+
+#restart {
+	background-image: url(../img/restart.png);
+}
