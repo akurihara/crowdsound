@@ -16,11 +16,11 @@
 
 		<div class="player">
 
-			<a class="button" id="restart" href="" title=""></a>
-			<a class="button" id="play" href="" title=""></a>
-			<a class="button" id="forward" href="" title=""></a>
+			<a class="button" href="#restart" id="restart" href="" title=""></a>
+			<a class="button" href="#play" id="play" href="" title=""></a>
+			<a class="button" href="#forward" id="forward" href="" title=""></a>
 
-				<input type="range" id="seek" value="0" max=""/>
+				<input type="range" id="seek" value="0" max="100"/>
 			
 		</div><!-- / player -->
 		
@@ -28,40 +28,34 @@
 </body>
 
 <script type="text/javascript">
-	// jQuery(document).ready(function() {
+	$(document).ready(function() {
 
-	// 	container = $('.container');
-	// 	cover = $('.cover');
-	// 	play = $('#play');
-	// 	pause = $('#pause');
-	// 	mute = $('#mute');
-	// 	muted = $('#muted');
-	// 	close = $('#close');
-	// 	song = new Audio('../public/audio/I\'m_Gonna_Be.mp3');
-	// 	duration = song.duration;
-
-	// 	play.click(function() {
-	// 		song.play();
-	// 	});
-
-	// 	$("#seek").bind("change", function() {
-	// 		song.currentTime = $(this).val();
-	// 		$("#seek").attr("max", song.duration);
-	// 	});
-
-	// 	song.addEventListener('timeupdate',function (){
-	// 		curtime = parseInt(song.currentTime, 10);
-	// 	$("#seek").attr("value", curtime);
-	// 	});
-
-
-	// });
-	$(document).ready(function(){
+		container = $('.container');
+		cover = $('.cover');
 		play = $('#play');
+		pause = $('#pause');
+		mute = $('#mute');
+		muted = $('#muted');
+		close = $('#close');
 		song = new Audio('../public/audio/I\'m_Gonna_Be.mp3');
+		slider = document.getElementById('seek');
+		duration = song.duration;
+
 		play.click(function() {
 			song.play();
 		});
+
+		$("#seek").bind("change", function() {
+			song.currentTime = $(this).val();
+			$("#seek").attr("max", song.duration);
+		});
+
+		$(song).bind('timeupdate', function() {
+			var rem = parseInt(duration - song.currentTime, 10)
+			slider.value = (song.currentTime/song.duration)*slider.max;
+			//slider.value = song.currentTime;
+		});
+
 	});
 
 </script>
