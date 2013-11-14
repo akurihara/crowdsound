@@ -1,0 +1,25 @@
+body {
+	background:#888;
+}
+
+.start-box {
+	text-align:center;
+	height:250px;
+	padding:30px;
+}
+
+.start-create {
+	background:#88f;
+}
+
+.start-join {
+	background:#f88;
+}
+
+@media (min-width: 767px) {
+	
+	.start-box {
+		margin-top:20%;
+	}
+	
+}
