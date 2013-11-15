@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/playlist.css">
+    </head>
+
+    <body>
+        <div class="playlist">
+        </div> 
+    </body>
+
+    <script type="text/html" id="playlist_item">
+        <div class="playlist_item row">
+            <div class="col-xs-2 index">
+                <div id="playlist_item_index" data-content="playlist_item_index"></div>
+            </div>
+            <div class="col-xs-8 song_data">
+                <div id="playlist_item_song_name" data-content="playlist_item_song_name"></div>
+                <div>
+                    <span data-content="playlist_item_artist"></span>,
+                    <span data-content="playlist_item_album"></span>
+                </div>
+            </div>
+            <div class="col-xs-2 meta_data">
+                <span id="playlist_item_like" data-content="playlist_item_like"></span>
+                <span id="playlist_item_rating" data-content="playlist_item_rating"></span>
+            </div>
+        </div> 
+    </script>
+
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/jquery.loadTemplate-1.2.7.min.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+    <script src="../public/js/playlist.js"></script>
+
+</html>
