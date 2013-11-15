@@ -2,10 +2,8 @@ $(document).ready(function() {
 		addsongBtn = document.getElementById('plus');
 		searchDiv = document.getElementById('searchDiv');
 		playlistDiv = document.getElementById('playlistDiv');
-		
+
 		isSearching = false;
-
-
 
 		// play button functionality
 		$('#plus').click(function() {
