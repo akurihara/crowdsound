@@ -122,5 +122,27 @@ a.ui-slider-handle.ui-state-default {
 
 /* END SEARCH */
 
+/* ALL PAGES */
 
+.player-nav {
+	background-color: #3399FF;
+	margin: 0 0 0 0;
+	height: 130px;
+}
+
+.party-text {
+	color: #ffffff;
+	font-size: 30px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.logo {
+	height: 120px;
+	width: auto;
+	padding: 5px;
+	vertical-align: middle;
+}
+
+/* END SEARCH */
 
