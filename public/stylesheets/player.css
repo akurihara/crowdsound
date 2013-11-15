@@ -97,14 +97,19 @@ a.ui-slider-handle.ui-state-default {
 /* SEARCH */
 
 .add-song-plus {
-	line-height: 60px;
+	line-height: 52px;
 	font-size: 26px;
 }
 
 .search-result {
-	font-size: 18px;
 	border-bottom: 2px solid #eee;
-	margin-top: 10px;
+	margin: 4px 0px;
+	padding: 4px;
+}
+
+.search-result-song {
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
 #search-box {
