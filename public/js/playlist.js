@@ -42,8 +42,8 @@ var dummySongs = [
         like: true
     },
     {
-        song_name: "This is a song title",
-        artist: "Artist Name", 
+        song_name: "Blackhole Sun",
+        artist: "Soundgarden", 
         album: "", 
         rating: 1,
         like: true
