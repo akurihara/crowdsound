@@ -3,5 +3,5 @@ var Schema = mongoose.Schema;
 
 /* SCHEME HERE */
 
-mongoose.connect( 'mongodb://localhost/3000' );
+mongoose.connect( 'mongodb://localhost:3000' );
 
