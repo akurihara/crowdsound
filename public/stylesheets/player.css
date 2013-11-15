@@ -18,7 +18,7 @@
     -webkit-appearance: none;
     height: 8px;
     width: 100%;
-    background-color: #3399FF;
+    background-color: #5b9ce8;
 }
 
 .seek::-webkit-slider-thumb {
@@ -68,8 +68,8 @@
 	height: 5px;
 	width: 80%;
 	top: 5px;
-/*	background-color: #3399FF;
-	color: #3399FF; */
+/*	background-color: #5b9ce8;
+	color: #5b9ce8; */
 }
 
 a.ui-slider-handle.ui-state-default {  
@@ -82,7 +82,7 @@ a.ui-slider-handle.ui-state-default {
 }  
 
 .ui-widget-header {
-	background: #3399FF;
+	background: #5b9ce8;
 }
 
 .player-panel {
@@ -125,19 +125,24 @@ a.ui-slider-handle.ui-state-default {
 /* ALL PAGES */
 
 .player-nav {
-	background-color: #3399FF;
+	background-color: #5b9ce8;
 	margin: 0 0 0 0;
 	height: 120px;
+	display: table;
+	width: 100%;
 }
 
 .party-text {
+	display: table-cell;
 	color: #ffffff;
 	font-size: 30px;
+	height: 120px;
 	text-align: center;
 	vertical-align: middle;
 }
 
 .logo {
+	display: table-cell;
 	height: 110px;
 	width: auto;
 	padding: 5px;

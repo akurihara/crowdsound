@@ -1,7 +1,7 @@
 $(document).ready(function(){
+	$('.search-result').hide();
 
-	var search = $('#search-box')[0];
-    search.onkeypress = function (event) {
-    	console.log('hello');
+	$('#search-box')[0].onkeypress = function (event) {
+    	$('.search-result').show();
   	};
 });
