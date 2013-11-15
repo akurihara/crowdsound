@@ -127,7 +127,7 @@ a.ui-slider-handle.ui-state-default {
 .player-nav {
 	background-color: #3399FF;
 	margin: 0 0 0 0;
-	height: 130px;
+	height: 120px;
 }
 
 .party-text {
@@ -138,10 +138,13 @@ a.ui-slider-handle.ui-state-default {
 }
 
 .logo {
-	height: 120px;
+	height: 110px;
 	width: auto;
 	padding: 5px;
 	vertical-align: middle;
+	position:absolute;
+	left:0px;
+	top:0px;
 }
 
 /* END SEARCH */
