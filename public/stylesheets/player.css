@@ -89,8 +89,13 @@ a.ui-slider-handle.ui-state-default {
 	padding: 15px;
 }
 
-.no-bottom-margin {
-	margin-bottom: 0px;
+#now-playing-song {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#now-playing-artist {
+	font-size: 1.2em;
 }
 /* END PLAYER */
 

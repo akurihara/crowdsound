@@ -1,11 +1,11 @@
 var dummySongs = [ 
     {
-        song_name: "Work",
-        artist: "Iggy Azealea",
-        album: "The New Classic",
-        rating: 4,
-        like: false 
-    }, 
+        song_name: "I'm Gonna Be (500 Miles)",
+        artist: "The Proclaimers",
+        album: "",
+        rating: 15,
+        like: true
+    },
     {
         song_name: "New Slaves",
         artist: "Kanye West",
@@ -13,6 +13,13 @@ var dummySongs = [
         rating: 12,
         like: true
     },
+    {
+        song_name: "Work",
+        artist: "Iggy Azealea",
+        album: "The New Classic",
+        rating: 4,
+        like: false 
+    }, 
     {
         song_name: "Picasso Baby",
         artist: "Jay-Z",
@@ -58,7 +65,7 @@ var loadPlaylist = function() {
     console.log("loading playlist");
 
     $(".playlist").empty();
-    for (var i=0; i<3; i++) {
+    for (var i=0; i<4; i++) {
         var item = dummySongs[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
@@ -79,7 +86,7 @@ var loadPlaylist = function() {
 
     $(".song1").click(function() {
         //add3
-        var i = 3;
+        var i = 4;
         var item = dummySongs[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
@@ -100,7 +107,7 @@ var loadPlaylist = function() {
     });
     $(".song2").click(function() {
         //add4
-        var i = 4;
+        var i = 5
         var item = dummySongs[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
@@ -120,7 +127,7 @@ var loadPlaylist = function() {
     });
     $(".song3").click(function() {
         //add5
-        var i = 5;
+        var i = 6
         var item = dummySongs[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
@@ -141,7 +148,7 @@ var loadPlaylist = function() {
     });
     $(".song4").click(function() {
         //add6
-        var i = 6;
+        var i = 7;
         var item = dummySongs[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
