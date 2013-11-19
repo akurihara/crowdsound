@@ -1,7 +1,11 @@
 .playlist {
     background-color: white;
-    width: 640px;
+    width: 100%;
     height: 52px;
+}
+
+.playlist-row {
+    margin: 0px;
 }
 
 .playlist_item {

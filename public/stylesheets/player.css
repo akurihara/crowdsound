@@ -72,6 +72,10 @@
 	color: #5b9ce8; */
 }
 
+#play {
+	background-image: url(../img/play.png);
+}
+
 a.ui-slider-handle.ui-state-default {  
     position: absolute;  
     z-index: 2;  
@@ -110,6 +114,10 @@ a.ui-slider-handle.ui-state-default {
 	border-bottom: 2px solid #eee;
 	margin: 4px 0px;
 	padding: 4px;
+}
+
+.search-bar {
+	margin: 0px;
 }
 
 .search-result-song {
