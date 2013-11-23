@@ -8,3 +8,10 @@ $(document).ready(function() {
     getParty(id, initParty);
 });
 
+function initLoadingScreen() {
+
+}
+
+function closeLoadingScreen() {
+
+}
