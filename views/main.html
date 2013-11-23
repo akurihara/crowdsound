@@ -52,8 +52,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="row">
-                    <input type="text" id="search-box" placeholder="Search for songs...">
+                    <input type="text" id="search_box" placeholder="Search for songs...">
                 </div>
+                <div class="row">
+
+		<div class="search_results">
+		</div>
+
+                </div>
+
                 <!--dynamically loaded search items-->
             </div>
             <div class="col-sm-6">
@@ -84,13 +91,32 @@
             </div> 
         </script>
 
+	<script type="text/html" id="search_result">
+  	  <div class="search_result row">
+  	      <div class="col-xs-2 index">
+  	          <div id="search_result_index" data-content="search_result_index"></div>
+  	      </div>
+  	      <div class="col-xs-8 song_data">
+  	          <div id="search_result_song_name" data-content="search_result_song_name"></div>
+  	          <div>
+  	              <span data-content="search_result_artist"></span>,
+ 	               <span data-content="search_result_album"></span>
+  	          </div>
+  	      </div>
+   	     <div class="col-xs-2 meta_data">
+   	         <span id="search_result_add" data-content="search_result_add"></span>
+  	      </div>
+ 	   </div> 
+	</script>
+
         <!-- javascript dependencies -->
         <script src="../public/js/vendors/jquery.min.js"></script>
         <script src="../public/js/vendors/bootstrap.min.js"></script>
         <script src="../public/js/vendors/jquery.loadTemplate-1.2.7.min.js"></script>
-        <!--script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script-->
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="../public/js/playlist.js"></script>
         <script src="../public/js/search.js"></script>
+        <script src="../public/js/player.js"></script>
         <script src="../public/js/main.js"></script>
     </body>
 </html>

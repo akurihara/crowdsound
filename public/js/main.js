@@ -3,8 +3,8 @@ $(document).ready(function() {
     function initParty() {
         initPlayer();
         initPlaylist();
+        initSearch();
     };
     getParty(id, initParty);
 });
 
-getParty(id, initParty)
