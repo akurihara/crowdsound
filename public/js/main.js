@@ -1,4 +1,10 @@
 $(document).ready(function() {
-    initPlayer();
-    initPlaylist();
+    initLoadingScreen();
+    function initParty() {
+        initPlayer();
+        initPlaylist();
+    };
+    getParty(id, initParty);
 });
+
+getParty(id, initParty)
