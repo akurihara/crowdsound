@@ -58,7 +58,7 @@ function initSearch() {
     		$('.search_results').show();
   	};
 
-    $(".search-results").empty();
+    $(".search_results").empty();
     for (var i=0; i<4; i++) {
         var item = dummySongsSearch[i];
         var d = "<div id='search_result"+i+"'></div>";
