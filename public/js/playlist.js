@@ -57,11 +57,7 @@ var dummySongs = [
     },
 ];
 
-$(document).ready(function(){
-    loadPlaylist();
-});
-
-var loadPlaylist = function() {
+var initPlaylist = function() {
     console.log("loading playlist");
 
     $(".playlist").empty();
@@ -83,87 +79,4 @@ var loadPlaylist = function() {
                 playlist_item_like: like
             });
     };
-
-    $(".song1").click(function() {
-        //add3
-        var i = 4;
-        var item = dummySongs[i];
-        var d = "<div id='playlist_item_"+i+"'></div>";
-        $(".playlist").append(d);
-
-        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
-        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-
-        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
-            {
-                playlist_item_index: i+1,
-                playlist_item_song_name: item.song_name,
-                playlist_item_artist: item.artist,
-                playlist_item_album: item.album,
-                playlist_item_rating: item.rating,
-                playlist_item_like: like
-            });
-
-    });
-    $(".song2").click(function() {
-        //add4
-        var i = 5
-        var item = dummySongs[i];
-        var d = "<div id='playlist_item_"+i+"'></div>";
-        $(".playlist").append(d);
-
-        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
-        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-
-        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
-            {
-                playlist_item_index: i+1,
-                playlist_item_song_name: item.song_name,
-                playlist_item_artist: item.artist,
-                playlist_item_album: item.album,
-                playlist_item_rating: item.rating,
-                playlist_item_like: like
-            });
-    });
-    $(".song3").click(function() {
-        //add5
-        var i = 6
-        var item = dummySongs[i];
-        var d = "<div id='playlist_item_"+i+"'></div>";
-        $(".playlist").append(d);
-
-        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
-        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-
-        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
-            {
-                playlist_item_index: i+1,
-                playlist_item_song_name: item.song_name,
-                playlist_item_artist: item.artist,
-                playlist_item_album: item.album,
-                playlist_item_rating: item.rating,
-                playlist_item_like: like
-            });
-
-    });
-    $(".song4").click(function() {
-        //add6
-        var i = 7;
-        var item = dummySongs[i];
-        var d = "<div id='playlist_item_"+i+"'></div>";
-        $(".playlist").append(d);
-
-        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
-        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-
-        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
-            {
-                playlist_item_index: i+1,
-                playlist_item_song_name: item.song_name,
-                playlist_item_artist: item.artist,
-                playlist_item_album: item.album,
-                playlist_item_rating: item.rating,
-                playlist_item_like: like
-            });
-    });
 };

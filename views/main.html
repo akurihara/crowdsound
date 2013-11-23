@@ -1,0 +1,123 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/player.css">
+        <link rel="stylesheet" type="text/css" href="../public/stylesheets/playlist.css">
+    </head>
+    <body>
+        <div class="player-nav">
+            <img src="../public/img/logo.png" class="logo pull-left" />
+            <p class="party-text">
+                H91D18A
+                <br>
+                boom boom meow
+            </p>
+        </div>
+
+        <div class="container">
+            <div class="row player-panel">
+                <div class="col-sm-3">
+                    <div class="col-sm-4 col-md-2 col-md-offset-3">
+                        <a class="button" href="#restart" id="restart" href="" title=""></a>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <a class="button" href="#play" id="play" href="" title=""></a>
+                    </div>
+                    <div class="col-sm-4 col-md-2">
+                        <a class="button" href="#forward" id="forward" href="" title=""></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div id="now-playing-song" href="#" class="text-center">
+                            I'm Gonna Be (500 Miles)
+                        </div>
+                        <div id="now-playing-artist" href="#" class="text-center">
+                            The Proclaimers
+                        </div>
+                    </div>
+                    <input type="range" class="seek" id="seek" value="0" max="100"/>
+                    <p id="timeLeft"/>
+                </div>
+                <div class="col-sm-3">
+                    <span id="volume" href="#volume" class="glyphicon glyphicon-volume-down"></span>  
+                    <div id="slider" class="pull-right">
+                        <div id="range"/></div> 
+                    </div>
+                </div>
+		    </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <input type="text" id="search_box" placeholder="Search for songs...">
+                </div>
+                <div class="row">
+
+		<div class="search_results">
+		</div>
+
+                </div>
+
+                <!--dynamically loaded search items-->
+            </div>
+            <div class="col-sm-6">
+                <div class="playlist">
+                </div>
+                <!--dynamically loaded playlist items-->
+            </div>
+        </div>
+
+
+        <!-- templating -->
+        <script type="text/html" id="playlist_item">
+            <div class="playlist_item row">
+                <div class="col-xs-2 index">
+                    <div id="playlist_item_index" data-content="playlist_item_index"></div>
+                </div>
+                <div class="col-xs-8 song_data">
+                    <div id="playlist_item_song_name" data-content="playlist_item_song_name"></div>
+                    <div>
+                        <span data-content="playlist_item_artist"></span>,
+                        <span data-content="playlist_item_album"></span>
+                    </div>
+                </div>
+                <div class="col-xs-2 meta_data">
+                    <span id="playlist_item_like" data-content="playlist_item_like"></span>
+                    <span id="playlist_item_rating" data-content="playlist_item_rating"></span>
+                </div>
+            </div> 
+        </script>
+
+	<script type="text/html" id="search_result">
+  	  <div class="search_result row">
+  	      <div class="col-xs-2 index">
+  	          <div id="search_result_index" data-content="search_result_index"></div>
+  	      </div>
+  	      <div class="col-xs-8 song_data">
+  	          <div id="search_result_song_name" data-content="search_result_song_name"></div>
+  	          <div>
+  	              <span data-content="search_result_artist"></span>,
+ 	               <span data-content="search_result_album"></span>
+  	          </div>
+  	      </div>
+   	     <div class="col-xs-2 meta_data">
+   	         <span id="search_result_add" data-content="search_result_add"></span>
+  	      </div>
+ 	   </div> 
+	</script>
+
+        <!-- javascript dependencies -->
+        <script src="../public/js/vendors/jquery.min.js"></script>
+        <script src="../public/js/vendors/bootstrap.min.js"></script>
+        <script src="../public/js/vendors/jquery.loadTemplate-1.2.7.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="../public/js/playlist.js"></script>
+        <script src="../public/js/search.js"></script>
+        <script src="../public/js/player.js"></script>
+        <script src="../public/js/main.js"></script>
+    </body>
+</html>
+
