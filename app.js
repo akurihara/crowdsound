@@ -8,7 +8,7 @@ var routes = require('./routes');
 var login = require('./routes/login');
 var http = require('http');
 var path = require('path');
-
+var socketio = require('socket.io')
 var app = express();
 
 //require('./db');
@@ -31,9 +31,20 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-//app.get('/login', routes.login);
-//app.post('/login', routes.login);
+app.get('/login', login.login);
+app.post('/login', login.login);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+// SOCKET STUFF!
+var io = socketio.listen(server);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('message', { message: 'Welcome to CrowdSound!' });
+  socket.on('send', function (data) {
+    io.sockets.emit('message', data);
+  });
+});
+

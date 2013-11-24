@@ -23,3 +23,10 @@ $(document).ready(function() {
     });
 });
 
+function initLoadingScreen() {
+
+}
+
+function closeLoadingScreen() {
+
+}
