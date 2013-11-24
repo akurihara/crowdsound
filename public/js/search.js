@@ -1,61 +1,9 @@
-var dummySongsSearch = [ 
-    {
-        song_name: "I'm Gonna Be (500 Miles)",
-        artist: "The Proclaimers",
-        album: "",
-        in_playlist: true
-    },
-    {
-        song_name: "New Slaves",
-        artist: "Kanye West",
-        album: "Yeezus",
-        in_playlist: true
-    },
-    {
-        song_name: "Work",
-        artist: "Iggy Azealea",
-        album: "The New Classic",
-        in_playlist: false 
-    }, 
-    {
-        song_name: "Picasso Baby",
-        artist: "Jay-Z",
-        album: "Holy Grail",
-        in_playlist: false
-    },
-    {
-        song_name: "Black Skinhead",
-        artist: "Kanye West", 
-        album: "Yeezus", 
-        in_playlist: true
-    },
-    {
-        song_name: "Black Mirror",
-        artist: "The Arcade Fire", 
-        album: "", 
-        in_playlist: true
-    },
-    {
-        song_name: "Back In Black",
-        artist: "ACDC", 
-        album: "", 
-        in_playlist: true
-    },
-    {
-        song_name: "Blackhole Sun",
-        artist: "Soundgarden", 
-        album: "", 
-        in_playlist: true
-    },
-];
-
-
 function initSearch() {
 	console.log("loading search");
 
 	$('.search_results').hide();
 	$('#search_box')[0].onkeypress = function (event) {
-    		$('.search_results').show();
+        $('.search_results').show();
   	};
 
     $(".search-results").empty();
@@ -77,4 +25,8 @@ function initSearch() {
             });
     };
 
-}
+};
+
+function searchSong() {
+
+};
