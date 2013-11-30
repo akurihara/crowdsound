@@ -15,15 +15,15 @@ function getPartyData(id, callback) {
      .done(callback(data));
      .fail(...);
      */
-    return dummyPartyData;
+    return callback(dummyPartyData);
 };
 
 function getPlaylist(id, callback) {
-    return dummySongs;
+    return callback(dummyPlaylistSongs);
 };
 
 function getSearch(query, id, callback) {
-    return dummySongsSearch;
+    return callback(dummySongsSearch);
 };
 
 
@@ -37,24 +37,6 @@ var dummyPartyData = {
 
 var dummySongsSearch = [ 
     {
-        song_name: "I'm Gonna Be (500 Miles)",
-        artist: "The Proclaimers",
-        album: "",
-        in_playlist: true
-    },
-    {
-        song_name: "New Slaves",
-        artist: "Kanye West",
-        album: "Yeezus",
-        in_playlist: true
-    },
-    {
-        song_name: "Work",
-        artist: "Iggy Azealea",
-        album: "The New Classic",
-        in_playlist: false 
-    }, 
-    {
         song_name: "Picasso Baby",
         artist: "Jay-Z",
         album: "Holy Grail",
@@ -67,11 +49,23 @@ var dummySongsSearch = [
         in_playlist: true
     },
     {
+        song_name: "New Slaves",
+        artist: "Kanye West",
+        album: "Yeezus",
+        in_playlist: true
+    },
+    {
         song_name: "Black Mirror",
         artist: "The Arcade Fire", 
         album: "", 
         in_playlist: true
     },
+    {
+        song_name: "Work",
+        artist: "Iggy Azealea",
+        album: "The New Classic",
+        in_playlist: false 
+    }, 
     {
         song_name: "Back In Black",
         artist: "ACDC", 
@@ -86,14 +80,7 @@ var dummySongsSearch = [
     },
 ];
 
-var dummySongs = [ 
-    {
-        song_name: "I'm Gonna Be (500 Miles)",
-        artist: "The Proclaimers",
-        album: "",
-        rating: 15,
-        like: true
-    },
+var dummyPlaylistSongs = [ 
     {
         song_name: "New Slaves",
         artist: "Kanye West",
@@ -120,7 +107,7 @@ var dummySongs = [
         artist: "Kanye West", 
         album: "Yeezus", 
         rating: 1,
-        like: true
+        like: false
     },
     {
         song_name: "Black Mirror",
@@ -134,13 +121,13 @@ var dummySongs = [
         artist: "ACDC", 
         album: "", 
         rating: 1,
-        like: true
+        like: false
     },
     {
         song_name: "Blackhole Sun",
         artist: "Soundgarden", 
         album: "", 
         rating: 1,
-        like: true
+        like: false
     },
 ];

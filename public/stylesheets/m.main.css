@@ -1,0 +1,91 @@
+@media screen and (max-width: 480px) {
+    body {
+        font-size: small;
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+    .player_nav {
+        height: 48px;
+    }
+    .party_text {
+        font-size: medium;
+        font-weight: 700;
+        height: 48px;
+    }
+    .party_name {
+        font-size: 0.8em;
+    }
+    .logo {
+        display: none;
+    }
+    .glyphicon-heart, .glyphicon-heart-empty {
+        color: #ccc;
+        font-size: 20px;
+    }
+
+    /* SEARCH PANEL */
+    .search_panel {
+        display: none;
+    }
+
+    /* PLAYLIST PANEL */
+    .playlist_panel {
+        padding: 0;
+    }
+    .playlist_item {
+        height: 52px;
+    }
+    #playlist_item_song_name {
+        font-size: 1.1em;
+    }
+    
+    /* PLAYER PANEL */
+    .player_panel {
+        display: none;
+    }
+    .m_player_panel {
+        display: block;
+        height: 72px;
+        text-align: center;
+        margin: 0px;
+    }
+    .m_player_panel .player_btn{
+        height: 100%;
+        padding: 0px;
+    }
+    .m_player_panel .player_info{
+        height: 100%;
+        padding: 0px;
+    }
+    .m_player_panel .player_info>div {
+        margin: 0px;
+    }
+    .m_player_panel .player_info>div>div {
+        padding: 0px;
+    }
+    .m_player_panel #seek {
+        height: 6px;
+        float: left;
+    }
+    .m_player_panel .play_symbol{
+        font-size: 30px; 
+        margin-right: 10px;
+        line-height: 60px;
+    }
+    .m_player_panel .player_info>.row {
+        padding-top: 10px;
+        height: 60%;
+        font-weight: 600px;
+    }
+    .m_player_panel #now_playing_song {
+        font-size: 1.1em;
+        font-weight: 700;
+    }
+
+
+    
+
+}

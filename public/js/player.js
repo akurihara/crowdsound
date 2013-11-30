@@ -1,32 +1,39 @@
+function initGuestPlayer() {
+    //hide shit
+    initPlayer();
+}
+function initHostPlayer() {
+    // hook up functionality
+    initPlayer();
+}
+
 function initPlayer() {
+    console.log("initialized player");
 
-    // set play button
-    playBtn = document.getElementById('play');
-    playBtn.style.backgroundImage = "url(../public/img/play.png)";
+    playBtn = $('.play_button');
+    slider = $('.seek');
+    timeLeft = $('#timeLeft');
 
-    slider = document.getElementById('seek');
-    timeLeft = document.getElementById('timeLeft');
-    song = new Audio('../public/audio/I\'m_Gonna_Be.mp3');
+    song = new Audio('audio/I\'m_Gonna_Be.mp3');
     song.volume = .35;
     duration = song.duration;
-
     isPlaying = false;
 
     // play button functionality
-    $('#play').click(function() {
+    playBtn.click(function() {
         if (!isPlaying) {
             isPlaying = true;
-            playBtn.style.backgroundImage = "url(../public/img/pause.png)";
+            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
             song.play();
         } else {
             isPlaying = false;
-            playBtn.style.backgroundImage = "url(../public/img/play.png)";
+            playBtn.removeClass('glyphicon-pause').addClass('glyphicon-play');
             song.pause();
         }
     });
 
     // seek bar functionality
-    $("#seek").bind("change", function() {
+    slider.bind("change", function() {
         song.currentTime = $(this).val();
         $("#seek").attr("max", song.duration);
     });
@@ -47,9 +54,9 @@ function initPlayer() {
 
     // volume control
 
-     var volumeSlider = $('#slider');
+    var volumeSlider = $('#slider');
 
-     volumeSlider.slider({
+    volumeSlider.slider({
         range: 'min',
         min: 0,
         max: 100,

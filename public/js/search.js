@@ -1,14 +1,18 @@
-function initSearch() {
-	console.log("loading search");
-
-	$('.search_results').hide();
-	$('#search_box')[0].onkeypress = function (event) {
-        $('.search_results').show();
-  	};
-
+function initSearch(partyId) {
+	console.log("initialized search");
     $(".search_results").empty();
-    for (var i=0; i<4; i++) {
-        var item = dummySongsSearch[i];
+	$('#search_box')[0].onkeypress = function (event) {
+        var query = $('#search_box').val();
+        getSearch(query, partyId, function(results) {
+            displaySongs(results);
+        });
+  	};
+};
+
+function displaySongs(query) {
+    $(".search_results").empty();
+    for (var i=0; i<query.length; i++) {
+        var item = query[i];
         var d = "<div id='search_result"+i+"'></div>";
         $(".search_results").append(d);
 
@@ -17,16 +21,11 @@ function initSearch() {
 
         $("#search_result"+i).loadTemplate($("#search_result"),
             {
-                search_result_index: i+1,
+                //search_result_index: i+1,
                 search_result_song_name: item.song_name,
                 search_result_artist: item.artist,
                 search_result_album: item.album,
                 search_result_add: add
             });
     };
-
-};
-
-function searchSong() {
-
 };

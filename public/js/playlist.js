@@ -1,9 +1,9 @@
-var initPlaylist = function() {
-    console.log("loading playlist");
+var initPlaylist = function(playlist) {
+    console.log("initialized playlist");
 
     $(".playlist").empty();
-    for (var i=0; i<4; i++) {
-        var item = partyPlaylist[i];
+    for (var i=0; i<playlist.length; i++) {
+        var item = playlist[i];
         var d = "<div id='playlist_item_"+i+"'></div>";
         $(".playlist").append(d);
 

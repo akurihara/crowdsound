@@ -9,12 +9,12 @@ $(document).ready(function() {
 		$('#plus').click(function() {
 			if (!isSearching) {
 				isSearching = true;
-				addsongBtn.style.backgroundImage = "url(../public/img/playlist.png)";
+				addsongBtn.style.backgroundImage = "url(/img/playlist.png)";
 				$('#searchDiv').show();
 				$('#playlistDiv').hide();
 			} else {
 				isSearching = false;
-				addsongBtn.style.backgroundImage = "url(../public/img/plus.png)";
+				addsongBtn.style.backgroundImage = "url(/img/plus.png)";
 				$('#searchDiv').hide();
 				$('#playlistDiv').show();
 			}
