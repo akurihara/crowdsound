@@ -19,15 +19,27 @@ function getPartyData(id, callback) {
 };
 
 function getPlaylist(id, callback) {
-    return callback(dummyPlaylistSongs);
+    return callback(dummyPlaylist);
 };
 
 function getSearch(query, id, callback) {
     return callback(dummySongsSearch);
 };
 
+function getSong(id, callback) {
+    return callback(dummySongData);
+};
 
 /** WARNING: DUMMY DATA LIVES BELOW **/
+var dummySongData = {
+    songName: "I'm Gonna Be (500 Miles)"
+  , artist: "The Proclaimers"
+  , album: ""
+  , rating: 15
+  , time: 123 // in seconds
+  , duration: 300 // in seconds
+  , isPlaying: true
+}
 
 var dummyPartyData = {
     partyName : "Happy Times"
@@ -80,7 +92,7 @@ var dummySongsSearch = [
     },
 ];
 
-var dummyPlaylistSongs = [ 
+var dummyPlaylist = [ 
     {
         song_name: "New Slaves",
         artist: "Kanye West",

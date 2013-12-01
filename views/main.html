@@ -9,27 +9,25 @@
         <div class="player_nav">
             <img src="/img/logo.png" class="logo pull-left" />
             <p class="party_text">
-                <span class='party_code'> H91D18A </span>
+                <span class='party_code'></span>
                 <br>
-                <span class='party_name'>boom boom meow</span>
+                <span class='party_name'></span>
             </p>
         </div>
 
         <div class="container">
-
             <!-- m_player_panel is only compatible for guest user -->
             <div class="row m_player_panel">
                 <div class="col-xs-3 player_btn">
-                    <span class="button glyphicon glyphicon-play play_symbol"></span>
+                    <span class="glyphicon glyphicon-play play_symbol"></span>
                 </div>
                 <div class="col-xs-9 player_info">
                     <div class="row">
                         <div class="col-xs-9">
-                            <div id="now_playing_song" class="text-left">
-                                I'm Gonna Be (500 Miles)
-                            </div>
-                            <div id="now_playing_artist" class="text-left">
-                                The Proclaimers
+                            <div class="now_playing_song text-left"></div>
+                            <div class="text-left">
+                                <span class="now_playing_artist"></span>,
+                                <span class="now_playing_album"></span>
                             </div>
                         </div>
                         <div class="col-xs-3">
@@ -37,9 +35,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <input type="range" class="seek" id="seek" value="0" max="100"/>
-                        <p id="timeLeft"/>
-                        </div>
+                        <progress class="seek progress" value="0" max="100"></progress>
+                        <span class="time_elapsed"></span>
                     </div>
                 </div>
             </div>
@@ -53,15 +50,16 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
-                        <div id="now-playing-song" href="#" class="text-center">
+                        <div class="now_playing_song text-center" href="#">
                             I'm Gonna Be (500 Miles)
                         </div>
-                        <div id="now-playing-artist" href="#" class="text-center">
-                            The Proclaimers
+                        <div href="#" class="text-center">
+                            <span class="now_playing_artist">The Proclaimers</span>,
+                            <span class="now_playing_album"></span>
                         </div>
                     </div>
                     <input type="range" class="seek" id="seek" value="0" max="100"/>
-                    <p id="timeLeft"/>
+                    <p id="time_left"/>
                 </div>
                 <div class="col-sm-3">
                     <span id="volume" href="#volume" class="glyphicon glyphicon-volume-down"></span>  
@@ -131,6 +129,7 @@
         <script src="/js/vendors/bootstrap.min.js"></script>
         <script src="/js/vendors/jquery.loadTemplate-1.2.7.min.js"></script>
         <script src="/js/vendors/jquery-ui.min.js"></script>
+        <script src="/js/vendors/async.js"></script>
         <script src="/js/playlist.js"></script>
         <script src="/js/connect.js"></script>
         <script src="/js/search.js"></script>

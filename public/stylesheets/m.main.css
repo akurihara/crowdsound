@@ -66,26 +66,41 @@
     .m_player_panel .player_info>div>div {
         padding: 0px;
     }
-    .m_player_panel #seek {
+    .m_player_panel .seek {
         height: 6px;
         float: left;
+        background-color: #ccc;
     }
-    .m_player_panel .play_symbol{
+    .m_player_panel .progress {
+        height: 10px;
+        color: #ccc;
+        border-radius: 0px;
+        width: 80%;
+        float: left;
+    }
+    progress::-webkit-progress-value {
+        background-color: #5b9ce8;
+    }
+    progress::-webkit-progress-bar{
+        background-color: #ccc;
+    }
+    .m_player_panel .play_symbol {
         font-size: 30px; 
         margin-right: 10px;
         line-height: 60px;
+        color: #ccc;
     }
     .m_player_panel .player_info>.row {
         padding-top: 10px;
         height: 60%;
         font-weight: 600px;
     }
-    .m_player_panel #now_playing_song {
-        font-size: 1.1em;
+    .m_player_panel .now_playing_song {
+        font-size: 1.15em;
         font-weight: 700;
     }
-
-
-    
-
+    .m_player_panel .now_playing_artist, .m_player_panel .now_playing_album {
+        font-size: 1.0em;
+        font-weight: 400;
+    }
 }

@@ -196,7 +196,7 @@ a {
 	width: 10%;
 	font-size: 25px;
 }
-#timeLeft {
+#time_left {
 	width: 100%;
 	text-align: right;
 }
@@ -219,10 +219,10 @@ a.ui-slider-handle.ui-state-default {
 .player-panel {
 	padding: 15px;
 }
-#now-playing-song {
+.now_playing_song {
 	font-size: 1.2em;
 	font-weight: bold;
 }
-#now-playing-artist {
+.now_playing_artist {
 	font-size: 1.2em;
 }

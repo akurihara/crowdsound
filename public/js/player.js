@@ -1,32 +1,35 @@
 function initGuestPlayer() {
-    //hide shit
+    console.log("initialized guest player");
+    $('.now_playing_song').html(m_currentSong.songName);
+    $('.now_playing_artist').html(m_currentSong.artist);
+    $('.now_playing_album').html(m_currentSong.album);
+    $('.progress').attr("max", m_currentSong.duration);
+    $('.progress').attr("value", m_currentSong.time);
+    $('.time_elapsed').html(secondsToMinutes(m_currentSong.time));
+
+    // hide shit
     initPlayer();
-}
+};
+
 function initHostPlayer() {
-    // hook up functionality
-    initPlayer();
-}
-
-function initPlayer() {
-    console.log("initialized player");
-
+    console.log("initialized host player");
+ 
     playBtn = $('.play_button');
     slider = $('.seek');
-    timeLeft = $('#timeLeft');
+    timeLeft = $('#time_left');
 
     song = new Audio('audio/I\'m_Gonna_Be.mp3');
     song.volume = .35;
     duration = song.duration;
-    isPlaying = false;
 
     // play button functionality
     playBtn.click(function() {
-        if (!isPlaying) {
-            isPlaying = true;
+        if (!m_currentSong.isPlaying) {
+            m_currentSong.isPlaying = true;
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
             song.play();
         } else {
-            isPlaying = false;
+            m_currentSong.isPlaying = false;
             playBtn.removeClass('glyphicon-pause').addClass('glyphicon-play');
             song.pause();
         }
@@ -55,7 +58,6 @@ function initPlayer() {
     // volume control
 
     var volumeSlider = $('#slider');
-
     volumeSlider.slider({
         range: 'min',
         min: 0,
@@ -81,4 +83,9 @@ function initPlayer() {
         }
     });
 
+    initPlayer(m_currentSong/*hack*/);
+};
+
+function initPlayer(currSong) {
+ 
 }
