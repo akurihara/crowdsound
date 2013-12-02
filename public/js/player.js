@@ -1,11 +1,21 @@
 function initGuestPlayer() {
     console.log("initialized guest player");
+
     $('.now_playing_song').html(m_currentSong.songName);
     $('.now_playing_artist').html(m_currentSong.artist);
     $('.now_playing_album').html(m_currentSong.album);
     $('.progress').attr("max", m_currentSong.duration);
-    $('.progress').attr("value", m_currentSong.time);
-    $('.time_elapsed').html(secondsToMinutes(m_currentSong.time));
+
+    var id = setInterval(function() {
+        if (m_currentSong.time >= m_currentSong.duration) {
+            // request more data
+            clearInterval(id);
+        } else {
+            $('.progress').attr("value", m_currentSong.time);
+            $('.time_elapsed').html(secondsToMinutes(m_currentSong.time));
+        }
+        m_currentSong.time++;
+    }, 1000);
 
     // hide shit
     initPlayer();

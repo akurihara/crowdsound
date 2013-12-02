@@ -18,9 +18,29 @@
     .party_name {
         font-size: 0.8em;
     }
+    .party_code {
+        font-size: 20px;
+        line-height:48px;
+    }
+    .back_button {
+        display: none;
+        font-size: 20px;
+        line-height: 43px;
+        color:white;
+    }
+    .add_song_button {
+        display: block;
+        font-size: 20px;
+        line-height: 43px;
+        color:white;
+    }
+    .add_song_button:hover, .back_button:hover{
+        cursor: pointer;
+    }
     .logo {
         display: none;
     }
+
     .glyphicon-heart, .glyphicon-heart-empty {
         color: #ccc;
         font-size: 20px;

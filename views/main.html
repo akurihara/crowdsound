@@ -6,13 +6,19 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/m.main.css">
     </head>
     <body>
-        <div class="player_nav">
-            <img src="/img/logo.png" class="logo pull-left" />
-            <p class="party_text">
+        <div class="player_nav row">
+            <div class="col-xs-2">
+                <span class='glyphicon glyphicon-chevron-left back_button'></span>
+                <img src="/img/logo.png" class="logo pull-left" />
+            </div>
+            <div class="party_text col-xs-8">
                 <span class='party_code'></span>
-                <br>
-                <span class='party_name'></span>
-            </p>
+                <!--br>
+                <span class='party_name'></span-->
+            </div>
+            <div class="col-xs-2">
+                <span class='glyphicon glyphicon-plus add_song_button'></span>
+            </div>
         </div>
 
         <div class="container">
@@ -51,7 +57,6 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="now_playing_song text-center" href="#">
-                            I'm Gonna Be (500 Miles)
                         </div>
                         <div href="#" class="text-center">
                             <span class="now_playing_artist">The Proclaimers</span>,
