@@ -50,6 +50,14 @@
     .search_panel {
         display: none;
     }
+    .addable {
+        color: #5b9ce8;
+        size: 20px;
+        line-height: 40px;
+    }
+    .addable:hover {
+        cursor: pointer;
+    }
 
     /* PLAYLIST PANEL */
     .playlist_panel {

@@ -30,6 +30,10 @@ function getSong(id, callback) {
     return callback(dummySongData);
 };
 
+function addSong(songName, artist, album) {
+
+};
+
 /** WARNING: DUMMY DATA LIVES BELOW **/
 var dummySongData = {
     songName: "I'm Gonna Be (500 Miles)"
@@ -47,48 +51,49 @@ var dummyPartyData = {
   , partyColor: "#88F"
 }
 
+// TODO: change 'song_name' to 'songName'
 var dummySongsSearch = [ 
     {
         song_name: "Picasso Baby",
         artist: "Jay-Z",
         album: "Holy Grail",
-        in_playlist: false
+        inPlaylist: false
     },
     {
         song_name: "Black Skinhead",
         artist: "Kanye West", 
         album: "Yeezus", 
-        in_playlist: true
+        inPlaylist: true
     },
     {
         song_name: "New Slaves",
         artist: "Kanye West",
         album: "Yeezus",
-        in_playlist: true
+        inPlaylist: true
     },
     {
         song_name: "Black Mirror",
         artist: "The Arcade Fire", 
         album: "", 
-        in_playlist: true
+        inPlaylist: true
     },
     {
         song_name: "Work",
         artist: "Iggy Azealea",
         album: "The New Classic",
-        in_playlist: false 
+        inPlaylist: false 
     }, 
     {
         song_name: "Back In Black",
         artist: "ACDC", 
         album: "", 
-        in_playlist: true
+        inPlaylist: true
     },
     {
         song_name: "Blackhole Sun",
         artist: "Soundgarden", 
         album: "", 
-        in_playlist: true
+        inPlaylist: true
     },
 ];
 

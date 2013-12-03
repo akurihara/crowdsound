@@ -62,10 +62,15 @@ $(document).ready(function() {
     }
 });
 
+$(window).resize(function() {
+    handleMobileBrowser();
+});
+
 function handleMobileBrowser() {
     var mq = window.matchMedia( "(max-width: 480px)" );
     if (!mq.matches) {
     } else {
+        $(".add_song_button").unbind();
         $(".add_song_button").click(function() {
             async.parallel([
                 function(callback) {
@@ -98,6 +103,7 @@ function handleMobileBrowser() {
             });
         });
 
+        $(".back_button").unbind();
         $(".back_button").click(function() {
             $(".search_panel").animate({left: '480px'}, function() {
                 $(".search_panel").hide();
