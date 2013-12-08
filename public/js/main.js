@@ -9,6 +9,7 @@ var m_playlist = [];
 var m_currentSong = { songName:"", artist:"", album:"", 
     rating:-1, time:-1, duration:-1, isPlaying:false } 
 var m_isHost = false;
+var apiswf = null;
 
 $(document).ready(function() {
     initLoadingScreen();
