@@ -56,6 +56,8 @@ exports.login = function(req, res){
 
 exports.api = function(req, res) {
 	var OAuth = require('OAuth');
+	var url = require("url");
+
 	var oauth = new OAuth.OAuth(
 		  "http://api.rdio.com/oauth/request_token",
 		  "http://api.rdio.com/oauth/access_token",
@@ -66,7 +68,9 @@ exports.api = function(req, res) {
 		  "HMAC-SHA1"
 	);
 
-	var query = "kanye west";
+	var query = url.parse(req.url).query;
+	console.log(query);
+	
 	oauth.post(
     "http://api.rdio.com/1/",
     req.session.oauth_access_token,
@@ -78,7 +82,9 @@ exports.api = function(req, res) {
         count: 7
     },
     function(err, result) {
-      res.send(result);
+    	console.log(result.results);
+    	res.send(query);
+      //res.send(result.results);
     }
 	);
 

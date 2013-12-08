@@ -23,7 +23,13 @@ function getPlaylist(id, callback) {
 };
 
 function getSearch(query, id, callback) {
-    return callback(dummySongsSearch);
+    $.get(
+        "/api?query=" + encodeURIComponent(query),
+        function (result) {
+            callback(result);
+        }
+    );
+    //return callback(dummySongsSearch);
 };
 
 function getSong(id, callback) {
