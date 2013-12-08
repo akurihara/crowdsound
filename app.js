@@ -36,6 +36,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/main', routes.main);
 app.get('/login', routes.login);
+app.get('/api', routes.api);
 
 /*
 oauth.post(
