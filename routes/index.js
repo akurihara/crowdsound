@@ -69,6 +69,7 @@ exports.api = function(req, res) {
 	);
 
 	var queryString = url.parse(req.url, true).query.query;
+	console.log(queryString);
 	
 	oauth.post(
     "http://api.rdio.com/1/",
@@ -82,7 +83,7 @@ exports.api = function(req, res) {
     },
     function(err, response) {
     	var response = JSON.parse(response);
-    	console.log(response);
+    	//console.log(response);
     	//console.log(response.result.results);
     	var searchResults = response.result.results;
     	searchResults.forEach(function(track) {

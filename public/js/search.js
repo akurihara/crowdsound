@@ -2,12 +2,16 @@ function initSearch() {
 	console.log("initialized search");
 
     $(".search_results").empty();
-	$('#search_box')[0].onkeypress = function (event) {
+
+    // use a debounce plugin for jQuery to limit ajax calls to server
+    debounceSearch = $.debounce(function (event) {
         var query = $('#search_box').val();
         getSearch(query, m_id, function(results) {
-            displaySongs(results);
+        displaySongs(results);
         });
-  	};
+    }, 300);
+
+	$('#search_box').keyup(debounceSearch);
 };
 
 function displaySongs(results) {
