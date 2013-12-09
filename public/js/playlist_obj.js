@@ -32,7 +32,7 @@ Playlist.prototype.removePlayed = function() {
 // removes a track elsewhere in the queue - only host can do this
 Playlist.prototype.removeUnplayed = function(trackKey) {
 	// set likes to -1, then sort so it moves to the end of the queue
-	this.queueMap[trackKey] = -1;
+	this.queueMap[trackKey].numLikes = -1;
 	this.sortQueue();
 
 	delete queueMap[trackKey];
