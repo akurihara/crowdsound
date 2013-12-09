@@ -11,7 +11,7 @@ var socketio = require('socket.io')
 var OAuth = require('OAuth');
 var app = express();
 
-//require('./db');
+require('./db');
 
 // all environments
 app.set('port', process.env.PORT || 3000);
