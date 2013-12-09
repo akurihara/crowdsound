@@ -38,21 +38,6 @@ app.get('/main', routes.main);
 app.get('/login', routes.login);
 app.get('/api', routes.api);
 
-/*
-oauth.post(
-    "http://api.rdio.com/1/",
-    null,
-    null,
-    {
-        method: "get",
-        keys: "a184236,a254895,a242205"
-    },
-    function(result) {
-        console.log(result);
-    }
-);
-*/
-
 var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

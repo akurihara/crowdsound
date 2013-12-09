@@ -26,8 +26,8 @@ exports.main = function(req, res){
     function(error, oauth_access_token, oauth_access_token_secret, results2) {
     	req.session.oauth_access_token = oauth_access_token;
 			req.session.oauth_access_token_secret = oauth_access_token_secret;
-			console.log("access");
-			console.log(oauth_access_token + " " + oauth_access_token_secret);
+			//console.log("access");
+			//console.log(oauth_access_token + " " + oauth_access_token_secret);
     });
   res.render('main');
 };
@@ -68,8 +68,7 @@ exports.api = function(req, res) {
 		  "HMAC-SHA1"
 	);
 
-	var query = url.parse(req.url).query;
-	console.log(query);
+	var queryString = url.parse(req.url, true).query.query;
 	
 	oauth.post(
     "http://api.rdio.com/1/",
@@ -78,13 +77,21 @@ exports.api = function(req, res) {
     {
         method: "search",
         types: "Track",
-        query: query,
+        query: queryString,
         count: 7
     },
-    function(err, result) {
-    	console.log(result.results);
-    	res.send(query);
-      //res.send(result.results);
+    function(err, response) {
+    	var response = JSON.parse(response);
+    	console.log(response);
+    	//console.log(response.result.results);
+    	var searchResults = response.result.results;
+    	searchResults.forEach(function(track) {
+    		track.song_name = track.name;
+        // track.artist: "Jay-Z";
+        // track.album: "Holy Grail";
+        track.inPlaylist = false;
+    	});
+    	res.send(searchResults);
     }
 	);
 
