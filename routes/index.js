@@ -26,9 +26,8 @@ exports.main = function(req, res){
     function(error, oauth_access_token, oauth_access_token_secret, results2) {
     	req.session.oauth_access_token = oauth_access_token;
 			req.session.oauth_access_token_secret = oauth_access_token_secret;
-			//console.log("access");
-			//console.log(oauth_access_token + " " + oauth_access_token_secret);
     });
+
   res.render('main');
 };
 
@@ -70,20 +69,21 @@ exports.api = function(req, res) {
 
 	var queryString = url.parse(req.url, true).query.query;
 	console.log(queryString);
-	
+
+	var params = {
+  	method: "search",
+    types: "Track",
+    query: queryString,
+    count: 7
+	};
+
 	oauth.post(
     "http://api.rdio.com/1/",
     req.session.oauth_access_token,
     req.session.oauth_access_token_secret,
-    {
-        method: "search",
-        types: "Track",
-        query: queryString,
-        count: 7
-    },
+    params,
     function(err, response) {
     	var response = JSON.parse(response);
-    	//console.log(response);
     	//console.log(response.result.results);
     	var searchResults = response.result.results;
     	searchResults.forEach(function(track) {
