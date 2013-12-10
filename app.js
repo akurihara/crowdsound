@@ -2,6 +2,7 @@
 /**
  * Module dependencies.
  */
+exports.answer = 42;
 
 var express = require('express');
 var routes = require('./routes');
@@ -43,10 +44,11 @@ var server = app.listen(app.get('port'), function(){
 
 // SOCKET STUFF!
 var io = socketio.listen(server, { log: false });
-
+var connection_list = [];
 io.sockets.on('connection', function (socket) {
   socket.emit('message', { message: 'Welcome to CrowdSound!' });
   socket.on('send', function (data) {
     io.sockets.emit('message', data);
   });
+  connection_list.push(connection);
 });

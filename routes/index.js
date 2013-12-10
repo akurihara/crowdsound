@@ -1,3 +1,10 @@
+var Playlist = require('../objects/playlist_obj');
+var playlist = new Playlist.Playlist();
+console.log(playlist);
+
+var simple = require('../app');
+console.log(simple.answer);
+
 // Initialize OAuth Object
 var OAuth = require('OAuth');
 var oauth = new OAuth.OAuth(
@@ -40,12 +47,12 @@ exports.login = function(req, res){
 
 exports.search = function(req, res) {
 	var url = require("url");
-	var queryString = url.parse(req.url, true).query.query;
+	var query_string = url.parse(req.url, true).query.query;
 
 	var params = {
   	method: "search",
     types: "Track",
-    query: queryString,
+    query: query_string,
     count: 7
 	};
 
@@ -57,14 +64,14 @@ exports.search = function(req, res) {
     function(err, response) {
     	var response = JSON.parse(response);
     	//console.log(response.result.results);
-    	var searchResults = response.result.results;
-    	searchResults.forEach(function(track) {
+    	var search_results = response.result.results;
+    	search_results.forEach(function(track) {
     		track.song_name = track.name;
         // track.artist: "Jay-Z";
         // track.album: "Holy Grail";
         track.inPlaylist = false;
     	});
-    	res.send(searchResults);
+    	res.send(search_results);
     }
 	);
 
