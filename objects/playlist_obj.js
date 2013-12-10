@@ -15,6 +15,7 @@ exports.Playlist.prototype.sortQueue = function() {
 exports.Playlist.prototype.addTrack = function(track) {
 	this.queueMap[track.key] = track;
 	this.queue.push(track);
+	console.log('added track ' + track.name);
 }
 
 // client will send track key from the item in their playlist view

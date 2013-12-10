@@ -74,5 +74,8 @@ exports.search = function(req, res) {
     	res.send(search_results);
     }
 	);
+};
 
-}
+exports.addSong = function(req, res) {
+	playlist.addTrack(req.body);
+};

@@ -37,13 +37,9 @@ function getSong(id, callback) {
 };
 
 function postSong(trackKey, songName, artist, album, duration) {
-    var json = '{key: ' + trackKey 
-            + ', name: ' + songName 
-            + ', artist: ' + artist 
-            + ', album: ' + album
-            + ', duration: ' + duration + '}';
+    var data = {'key': trackKey, 'name': songName, 'artist': artist, 'album': album, 'duration': duration};
 
-    // POST this json string to server somewhere like /api/addSong
+    $.post('/api/addSong', data, 'json');
 };
 
 function postUpvote(trackKey) {

@@ -37,6 +37,7 @@ app.get('/', routes.index);
 app.get('/main', routes.main);
 app.get('/login', routes.login);
 app.get('/api/search', routes.search);
+app.post('/api/addSong', routes.addSong);
 
 var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -50,5 +51,5 @@ io.sockets.on('connection', function (socket) {
   socket.on('send', function (data) {
     io.sockets.emit('message', data);
   });
-  connection_list.push(connection);
+  // connection_list.push(connection);
 });
