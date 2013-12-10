@@ -88,11 +88,15 @@ $(document).ready(function() {
 callback_object.ready = function ready(user) {
   // find the embed/object element
   apiswf = $('#apiswf').get(0);
-}
+};
 
 // socket.io stuff
-socket.on('message', function(message){ console.log(message); })
-socket.on('disconnect', function(){ console.log('socket.io disconnected'); })
+socket.on('message', function(message) {
+    console.log(message);
+});
+socket.on('disconnect', function() { 
+    console.log('socket.io disconnected');
+});
 
 $(window).resize(function() {
     handleMobileBrowser();
