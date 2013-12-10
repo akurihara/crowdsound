@@ -37,7 +37,19 @@ function getSong(id, callback) {
 };
 
 function addSong(songName, artist, album) {
+    var data = {
+        song_name: songName,
+        artist: artist,
+        album: album
+    };
 
+    $.ajax({
+        type: "POST",
+        url: "/api/add/",
+        success: function(result) {
+            console.log(result);
+        }
+    });
 };
 
 /** WARNING: DUMMY DATA LIVES BELOW **/
