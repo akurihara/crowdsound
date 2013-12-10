@@ -37,11 +37,14 @@ function initHostPlayer() {
         if (!m_currentSong.isPlaying) {
             m_currentSong.isPlaying = true;
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
-            song.play();
+            //song.play();
+            alert('about to play');
+            apiswf.rdio_play('t2891787');
         } else {
             m_currentSong.isPlaying = false;
             playBtn.removeClass('glyphicon-pause').addClass('glyphicon-play');
-            song.pause();
+            // song.pause();
+            apiswf.rdio_pause();
         }
     });
 
