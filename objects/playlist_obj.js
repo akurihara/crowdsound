@@ -15,22 +15,22 @@ exports.Playlist.prototype.sortQueue = function() {
 exports.Playlist.prototype.addTrack = function(track) {
 	this.queueMap[track.key] = track;
 	this.queue.push(track);
-	console.log('added track ' + track.name);
+	console.log('[mac10] added track ' + track.name);
 }
 
 // client will send track key from the item in their playlist view
 exports.Playlist.prototype.upvote = function(trackKey) {
 	this.queueMap[trackKey].numLikes++;
 	this.sortQueue();
-	console.log('upvoted track ' + trackKey + ' to ' + this.queueMap[trackKey].numLikes);
+	console.log('[mac10] upvoted track ' + trackKey + ' to ' + this.queueMap[trackKey].numLikes);
 }
 
 // removes a song from the queue because it is now playing
 exports.Playlist.prototype.removePlayed = function() {
-	console.log('removing ' + this.queue[0].name);
+	console.log('[mac10] removing ' + this.queue[0].name);
 	delete this.queueMap[this.queue[0].key];
 	this.queue = this.queue.slice(1);
-	console.log('successfully removed played');
+	console.log('[mac10] successfully removed played');
 }
 
 // removes a track elsewhere in the queue - only host can do this
@@ -41,5 +41,5 @@ exports.Playlist.prototype.removeUnplayed = function(trackKey) {
 
 	delete this.queueMap[trackKey];
 	this.queue = this.queue.slice(0, this.queue.length-1);
-	console.log('successfully removed unplayed');
+	console.log('[mac10] successfully removed unplayed');
 }

@@ -1,10 +1,6 @@
 var Track = require('../objects/track');
 var Playlist = require('../objects/playlist_obj');
 var playlist = new Playlist.Playlist();
-console.log(playlist);
-
-var simple = require('../app');
-console.log(simple.answer);
 
 // Initialize OAuth Object
 var OAuth = require('OAuth');
@@ -46,7 +42,7 @@ exports.login = function(req, res){
 	});
 };
 
-exports.search = function(req, res) {
+exports.search = function(req, res) {	
 	var url = require("url");
 	var query_string = url.parse(req.url, true).query.query;
 
@@ -54,7 +50,7 @@ exports.search = function(req, res) {
   	method: "search",
     types: "Track",
     query: query_string,
-    count: 7
+    count: 8
 	};
 
 	oauth.post(
@@ -64,12 +60,10 @@ exports.search = function(req, res) {
     params,
     function(err, response) {
     	var response = JSON.parse(response);
-    	//console.log(response.result.results);
     	var search_results = response.result.results;
+
     	search_results.forEach(function(track) {
     		track.song_name = track.name;
-        // track.artist: "Jay-Z";
-        // track.album: "Holy Grail";
         track.inPlaylist = false;
     	});
     	res.send(search_results);
@@ -81,16 +75,26 @@ exports.addSong = function(req, res) {
 	var data = req.body;
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
+	broadcastPlaylist();
 };
 
 exports.upvote = function(req, res) {
 	playlist.upvote(req.body.key);
+	broadcastPlaylist();
 };
 
 exports.removePlayed = function(req, res) {
 	playlist.removePlayed();
+  broadcastPlaylist();
 };
 
 exports.removeUnplayed = function(req, res) {
 	playlist.removeUnplayed(req.body.key);
+	broadcastPlaylist();
 };
+
+function broadcastPlaylist() {
+	// broadcast updated playlist queue object to all clients
+  var sockets = require('../app').sockets;
+	sockets.emit('playlist', { playlist: playlist.queue });
+}

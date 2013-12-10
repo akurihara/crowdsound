@@ -91,8 +91,8 @@ callback_object.ready = function ready(user) {
 };
 
 // socket.io stuff
-socket.on('message', function(message) {
-    console.log(message);
+socket.on('playlist', function(playlist) {
+    console.log(playlist);
 });
 socket.on('disconnect', function() { 
     console.log('socket.io disconnected');
