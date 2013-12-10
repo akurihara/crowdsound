@@ -7,8 +7,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var socketio = require('socket.io')
-var OAuth = require('OAuth');
+var socketio = require('socket.io');
 var app = express();
 
 require('./db');

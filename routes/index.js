@@ -2,13 +2,13 @@
 /*
  * GET home page.
  */
+var OAuth = require('OAuth');
 
 exports.index = function(req, res){
   res.render('index');
 };
 
 exports.main = function(req, res){
-	var OAuth = require('OAuth');
 	var oauth = new OAuth.OAuth(
 		  "http://api.rdio.com/oauth/request_token",
 		  "http://api.rdio.com/oauth/access_token",
@@ -32,7 +32,6 @@ exports.main = function(req, res){
 };
 
 exports.login = function(req, res){
-	var OAuth = require('OAuth');
 	var oauth = new OAuth.OAuth(
 	  "http://api.rdio.com/oauth/request_token",
 	  "http://api.rdio.com/oauth/access_token",
@@ -54,7 +53,6 @@ exports.login = function(req, res){
 };
 
 exports.api = function(req, res) {
-	var OAuth = require('OAuth');
 	var url = require("url");
 
 	var oauth = new OAuth.OAuth(
@@ -68,7 +66,7 @@ exports.api = function(req, res) {
 	);
 
 	var queryString = url.parse(req.url, true).query.query;
-	console.log(queryString);
+	// console.log(queryString);
 
 	var params = {
   	method: "search",
