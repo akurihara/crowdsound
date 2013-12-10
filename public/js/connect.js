@@ -43,21 +43,19 @@ function postSong(trackKey, songName, artist, album, duration) {
 };
 
 function postUpvote(trackKey) {
-    var json = '{key: ' + trackKey + '}';
+    var data = {'key': trackKey};
 
-    // POST this json string to server somewhere like /api/upvoteSong
+    $.post('/api/upvote', data, 'json');
 }
 
 function getRemovePlayed() {
-    // GET to somewhere like /api/removePlayed so curent song removed from queue
-
-    // $.get('/api/removePlayed');
+    $.get('/api/removePlayed');
 }
 
 function postRemoveUnplayed(trackKey) {
-    var json ='{key: ' + trackKey + '}';
+    var data = {'key': trackKey};
 
-    // POST this json string to server somewhere like /api/removeUnplayed
+    $.post('/api/removeUnplayed', data, 'json');
 }
  
 /** WARNING: DUMMY DATA LIVES BELOW **/

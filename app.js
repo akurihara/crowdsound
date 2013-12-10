@@ -37,7 +37,11 @@ app.get('/', routes.index);
 app.get('/main', routes.main);
 app.get('/login', routes.login);
 app.get('/api/search', routes.search);
+app.get('/api/removePlayed', routes.removePlayed);
+
 app.post('/api/addSong', routes.addSong);
+app.post('/api/upvote', routes.upvote);
+app.post('/api/removeUnplayed', routes.removeUnplayed);
 
 var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

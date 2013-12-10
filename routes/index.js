@@ -1,3 +1,4 @@
+var Track = require('../objects/track');
 var Playlist = require('../objects/playlist_obj');
 var playlist = new Playlist.Playlist();
 console.log(playlist);
@@ -77,5 +78,19 @@ exports.search = function(req, res) {
 };
 
 exports.addSong = function(req, res) {
-	playlist.addTrack(req.body);
+	var data = req.body;
+	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
+	playlist.addTrack(track);
+};
+
+exports.upvote = function(req, res) {
+	playlist.upvote(req.body.key);
+};
+
+exports.removePlayed = function(req, res) {
+	playlist.removePlayed();
+};
+
+exports.removeUnplayed = function(req, res) {
+	playlist.removeUnplayed(req.body.key);
 };

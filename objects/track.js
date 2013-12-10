@@ -1,7 +1,7 @@
-function Track(key, name, artist, album, duration) {
+exports.Track = function(key, name, artist, album, duration) {
 	// class variables
 	this.key = key;
-	this.trackName = name;
+	this.name = name;
 	this.artist = artist;
 	this.album = album;
 	this.duration = duration;
