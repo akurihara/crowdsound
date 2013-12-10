@@ -35,14 +35,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/main', routes.main);
 app.get('/login', routes.login);
-app.get('/api', routes.api);
+app.get('/api/search', routes.search);
 
 var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 // SOCKET STUFF!
-var io = socketio.listen(server);
+var io = socketio.listen(server, { log: false });
 
 io.sockets.on('connection', function (socket) {
   socket.emit('message', { message: 'Welcome to CrowdSound!' });

@@ -24,7 +24,7 @@ function getPlaylist(id, callback) {
 
 function getSearch(query, id, callback) {
     $.get(
-        "/api?query=" + encodeURIComponent(query),
+        "/api/search?query=" + encodeURIComponent(query),
         function (result) {
             callback(result);
         }

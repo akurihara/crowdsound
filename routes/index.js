@@ -1,24 +1,20 @@
-
-/*
- * GET home page.
- */
+// Initialize OAuth Object
 var OAuth = require('OAuth');
+var oauth = new OAuth.OAuth(
+  "http://api.rdio.com/oauth/request_token",
+  "http://api.rdio.com/oauth/access_token",
+  "62nph9uusuqtqt3vdykqr2bx",
+  "KVgu9dkymP",
+  "1.0",
+  "http://localhost:3000/main",
+  "HMAC-SHA1"
+);
 
 exports.index = function(req, res){
   res.render('index');
 };
 
 exports.main = function(req, res){
-	var oauth = new OAuth.OAuth(
-		  "http://api.rdio.com/oauth/request_token",
-		  "http://api.rdio.com/oauth/access_token",
-		  "62nph9uusuqtqt3vdykqr2bx",
-		  "KVgu9dkymP",
-		  "1.0",
-		  "http://localhost:3000/main",
-		  "HMAC-SHA1"
-	);
-
 	oauth.getOAuthAccessToken(
 		req.session.oauth_token, 
     req.session.oauth_token_secret,
@@ -32,16 +28,6 @@ exports.main = function(req, res){
 };
 
 exports.login = function(req, res){
-	var oauth = new OAuth.OAuth(
-	  "http://api.rdio.com/oauth/request_token",
-	  "http://api.rdio.com/oauth/access_token",
-	  "62nph9uusuqtqt3vdykqr2bx",
-	  "KVgu9dkymP",
-	  "1.0",
-	  "http://localhost:3000/main",
-	  "HMAC-SHA1"
-	);
-
 	oauth.getOAuthRequestToken(function(error, oauth_token, oauth_token_secret, results){
 		req.session.oa = oauth;
 		req.session.oauth_token = oauth_token;
@@ -52,21 +38,9 @@ exports.login = function(req, res){
 	});
 };
 
-exports.api = function(req, res) {
+exports.search = function(req, res) {
 	var url = require("url");
-
-	var oauth = new OAuth.OAuth(
-		  "http://api.rdio.com/oauth/request_token",
-		  "http://api.rdio.com/oauth/access_token",
-		  "62nph9uusuqtqt3vdykqr2bx",
-		  "KVgu9dkymP",
-		  "1.0",
-		  "http://localhost:3000/main",
-		  "HMAC-SHA1"
-	);
-
 	var queryString = url.parse(req.url, true).query.query;
-	// console.log(queryString);
 
 	var params = {
   	method: "search",
