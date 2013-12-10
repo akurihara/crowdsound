@@ -36,10 +36,34 @@ function getSong(id, callback) {
     return callback(dummySongData);
 };
 
-function addSong(songName, artist, album) {
+function postSong(trackKey, songName, artist, album, duration) {
+    var json = '{key: ' + trackKey 
+            + ', name: ' + songName 
+            + ', artist: ' + artist 
+            + ', album: ' + album
+            + ', duration: ' + duration + '}';
 
+    // POST this json string to server somewhere like /api/addSong
 };
 
+function postUpvote(trackKey) {
+    var json = '{key: ' + trackKey + '}';
+
+    // POST this json string to server somewhere like /api/upvoteSong
+}
+
+function getRemovePlayed() {
+    // GET to somewhere like /api/removePlayed so curent song removed from queue
+
+    // $.get('/api/removePlayed');
+}
+
+function postRemoveUnplayed(trackKey) {
+    var json ='{key: ' + trackKey + '}';
+
+    // POST this json string to server somewhere like /api/removeUnplayed
+}
+ 
 /** WARNING: DUMMY DATA LIVES BELOW **/
 var dummySongData = {
     songName: "I'm Gonna Be (500 Miles)"
