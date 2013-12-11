@@ -104,19 +104,8 @@ function initCallbacks() {
           apiswf = $('#apiswf').get(0);
 
         };
-
-        callback_object.positionChanged = function positionChanged(currTime) {
-            var duration = $('.now_playing_song').attr('duration');
-            // song is over
-            if (currTime == duration) {
-                // set all the current song stuff to the next song in queue
-                //$('.now_playing_song').attr({'trackKey': });
-
-                getRemovePlayed();
-                // start playing next song
-                apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
-            }
-
+    }   
+}
 // socket.io stuff
 socket.on('disconnect', function() { 
     console.log('socket.io disconnected');

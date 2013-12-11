@@ -8,14 +8,14 @@ exports.Playlist = function() {
 exports.Playlist.prototype.sortQueue = function() {
 	this.queue.sort(
 		function(t1, t2) {
-			return (t1.numLikes > t2.numLikes) ? 1 : ((t1.numLikes < t2.numLikes) ? -1 : 0);
+			return (t1.numLikes > t2.numLikes) ? -1 : ((t1.numLikes < t2.numLikes) ? 1 : 0);
 		} 
 	);
 }
 
 exports.Playlist.prototype.addTrack = function(track) {
-	if (currentSong === null) {
-		currentSong = track;
+	if (this.currentSong === null) {
+		this.currentSong = track;
 	}
 	this.queueMap[track.key] = track;
 	this.queue.push(track);

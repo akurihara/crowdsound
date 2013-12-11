@@ -19,7 +19,7 @@ var oauth = new OAuth.OAuth(
 exports.initSockets = function(){
   var sockets = require('../app').sockets;
   sockets.on('connection', function (socket) {
-    socket.emit('playlist', { playlist: playlist.queue });
+    socket.emit('playlist', { playlist: playlist.queue, currentSong: playlist.currentSong});
   });
 }
 

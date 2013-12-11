@@ -34,16 +34,18 @@ var initPlaylist = function(playlist) {
    
     // update playlist
 	socket.on('playlist', function(object) {
-		if (m_currentSong.songName === "" && object.playlist[0] != null) {
+    console.log(object);
+		if (m_currentSong.songName === "" && object.currentSong != null) {
   		   m_currentSong = {};
-   		   m_currentSong.songName = object.playlist[0].name;
-           m_currentSong.artist = object.playlist[0].artist;
-           m_currentSong.album = object.playlist[0].album;
-           m_currentSong.rating = object.playlist[0].rating;
-           m_currentSong.time = object.playlist[0].time;
-           m_currentSong.duration = object.playlist[0].duration;
-           m_currentSong.isPlaying= object.playlist[0].isPlaying;
-           m_currentSong.key= object.playlist[0].key;
+         console.log(object.currentSong);
+   		   m_currentSong.songName = object.currentSong.name;
+           m_currentSong.artist = object.currentSong.artist;
+           m_currentSong.album = object.currentSong.album;
+           m_currentSong.rating = object.currentSong.rating;
+           m_currentSong.time = object.currentSong.time;
+           m_currentSong.duration = object.currentSong.duration;
+           m_currentSong.isPlaying= object.currentSong.isPlaying;
+           m_currentSong.key= object.currentSong.key;
 
            $('.now_playing_song').html(m_currentSong.songName);
            $('.now_playing_song').attr({'duration': m_currentSong.duration});
@@ -57,7 +59,7 @@ var initPlaylist = function(playlist) {
             while (apiswf == null) {}
 
             getRemovePlayed();
-            apiswf.rdio_play(object.playlist[0].key);
+            apiswf.rdio_play(object.currentSong.key);
             m_currentSong.isPlaying = true;
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
          }

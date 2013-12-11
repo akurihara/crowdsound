@@ -50,6 +50,7 @@ function initHostPlayer() {
     });
 
     callback_object.positionChanged = function positionChanged(currTime) {
+        console.log('callback position changed');
         var duration = $('.now_playing_song').attr('duration');
         // song is over
         if (currTime == duration) {
