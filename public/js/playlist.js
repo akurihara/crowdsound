@@ -58,7 +58,9 @@ var initPlaylist = function(playlist) {
 		        // busy loop until apiswf loaded
             while (apiswf == null) {}
 
-            getRemovePlayed();
+            console.log('GET REMOVE PLAYED - start');
+            // getRemovePlayed();
+            postRemoveUnplayed(m_currentSong.key);
             apiswf.rdio_play(object.currentSong.key);
             m_currentSong.isPlaying = true;
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');

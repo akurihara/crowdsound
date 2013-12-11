@@ -103,19 +103,19 @@ exports.addSong = function(req, res) {
 
 exports.upvote = function(req, res) {
 	playlist.upvote(req.body.key);
-  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end("Song upvoted!");
 	broadcastPlaylist();
 };
 
 exports.removePlayed = function(req, res) {
 	playlist.removePlayed();
-  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end('Song removed!');
   broadcastPlaylist();
 };
 
 exports.removeUnplayed = function(req, res) {
 	playlist.removeUnplayed(req.body.key);
-  res.writeHead(200, { "Content-Type": "application/json" });
+  res.end('Song removed!');
 	broadcastPlaylist();
 };
 

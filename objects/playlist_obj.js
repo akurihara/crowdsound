@@ -41,12 +41,14 @@ exports.Playlist.prototype.removePlayed = function() {
 // removes a track elsewhere in the queue - only host can do this
 exports.Playlist.prototype.removeUnplayed = function(trackKey) {
 	// set likes to -1, then sort so it moves to the end of the queue
-	this.queueMap[trackKey].numLikes = -1;
-	this.sortQueue();
+	if (this.queueMap[trackKey] !== undefined) {
+		this.queueMap[trackKey].numLikes = -1;
+		this.sortQueue();
 
-	delete this.queueMap[trackKey];
-	this.queue = this.queue.slice(0, this.queue.length-1);
-	console.log('[mac10] successfully removed unplayed');
+		delete this.queueMap[trackKey];
+		this.queue = this.queue.slice(0, this.queue.length-1);
+		console.log('[mac10] successfully removed unplayed');
+	}
 }
 
 exports.Playlist.prototype.contains = function(trackKey) {

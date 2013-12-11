@@ -49,6 +49,7 @@ function postUpvote(trackKey) {
 }
 
 function getRemovePlayed() {
+    console.log('GET REMOVE PLAYED!!!');
     $.get('/api/removePlayed');
 }
 
