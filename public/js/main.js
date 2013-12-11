@@ -97,29 +97,6 @@ callback_object.ready = function ready(user) {
 
 };
 
-    callback_object.positionChanged = function positionChanged(currTime) {
-        var duration = $('.now_playing_song').attr('duration');
-        // song is over
-        if (currTime == duration) {
-            // set all the current song stuff to the next song in queue
-            //$('.now_playing_song').attr({'trackKey': });
-
-            getRemovePlayed();
-            // start playing next song
-            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
-        }
-
-        
-        var rem = parseInt(duration - currTime, 10);
-        slider.value = (currTime/duration)*slider.max;
-
-        pos = (currTime / duration) * 100,
-        mins = Math.floor(rem/60,10),
-        secs = rem - mins*60;
-                    
-        timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
-    }
-
 // socket.io stuff
 
 socket.on('disconnect', function() { 

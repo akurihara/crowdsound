@@ -58,7 +58,7 @@ var initPlaylist = function(playlist) {
 	    $(".playlist").empty();
 	    for (var i=0; i<object.playlist.length; i++) {
 	        var item = object.playlist[i];
-	        var d = "<div id='playlist_item_"+i+"'></div>";
+	        var d = "<div id='playlist_item_"+i+"' key='"+item.key+"'></div>";
 	        $(".playlist").append(d);
 	
 	        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
