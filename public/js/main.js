@@ -9,9 +9,31 @@ var m_playlist = [];
 var m_currentSong = { songName:"", artist:"", album:"", 
     rating:-1, time:-1, duration:-1, isPlaying:false } 
 var m_isHost = false;
+var apiswf = null;
+var callback_object = {};
+var socket = io.connect();
 
 $(document).ready(function() {
     initLoadingScreen();
+
+    // TEMP LOCATION
+    // on page load use SWFObject to load the API swf into div#apiswf
+          var flashvars = {
+            'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
+            'domain': 'localhost', 
+            'listener': 'callback_object'    // the global name of the object that will receive callbacks from the SWF
+            };
+          var params = {
+            'allowScriptAccess': 'always'
+          };
+          var attributes = {};
+          swfobject.embedSWF('http://www.rdio.com/api/swf/', // the location of the Rdio Playback API SWF
+              'apiswf', // the ID of the element that will be replaced with the SWF
+              1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
+
+          $('.play_button').click(function() {
+                apiswf.rdio_play('t2891787');
+          });
 
     if (m_isHost) {
     } else {
@@ -60,6 +82,20 @@ $(document).ready(function() {
             closeLoadingScreen();
         });
     }
+});
+
+// Called once the API SWF has loaded and is ready to accept method calls.
+callback_object.ready = function ready(user) {
+  // find the embed/object element
+  apiswf = $('#apiswf').get(0);
+};
+
+// socket.io stuff
+socket.on('playlist', function(playlist) {
+    console.log(playlist);
+});
+socket.on('disconnect', function() { 
+    console.log('socket.io disconnected');
 });
 
 $(window).resize(function() {

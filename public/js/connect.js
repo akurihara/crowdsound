@@ -23,17 +23,41 @@ function getPlaylist(id, callback) {
 };
 
 function getSearch(query, id, callback) {
-    return callback(dummySongsSearch);
+    $.get(
+        "/api/search?query=" + encodeURIComponent(query),
+        function (result) {
+            callback(result);
+        }
+    );
+    //return callback(dummySongsSearch);
 };
 
 function getSong(id, callback) {
     return callback(dummySongData);
 };
 
-function addSong(songName, artist, album, callback) {
-    return callback();
+function postSong(trackKey, songName, artist, album, duration) {
+    var data = {'key': trackKey, 'name': songName, 'artist': artist, 'album': album, 'duration': duration};
+
+    $.post('/api/addSong', data, 'json');
 };
 
+function postUpvote(trackKey) {
+    var data = {'key': trackKey};
+
+    $.post('/api/upvote', data, 'json');
+}
+
+function getRemovePlayed() {
+    $.get('/api/removePlayed');
+}
+
+function postRemoveUnplayed(trackKey) {
+    var data = {'key': trackKey};
+
+    $.post('/api/removeUnplayed', data, 'json');
+}
+ 
 /** WARNING: DUMMY DATA LIVES BELOW **/
 var dummySongData = {
     songName: "I'm Gonna Be (500 Miles)"
