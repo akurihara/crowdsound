@@ -46,7 +46,7 @@ var server = app.listen(app.get('port'), function(){
 });
 
 // SOCKET STUFF!
-//var io = socketio.listen(server, { log: false });
+var io = socketio.listen(server, { log: false });
 /*
 io.sockets.on('connection', function (socket) {
   socket.emit('message', { message: 'Welcome to CrowdSound!' });

@@ -5,7 +5,6 @@ var global_access_token = "";
 var global_access_token_secret = "";
 
 // Initialize OAuth Object
-/*
 var OAuth = require('OAuth');
 var oauth = new OAuth.OAuth(
   "http://api.rdio.com/oauth/request_token",
@@ -16,7 +15,6 @@ var oauth = new OAuth.OAuth(
   "http://localhost:3000/main",
   "HMAC-SHA1"
 );
-*/
 
 exports.initSockets = function(){
   var sockets = require('../app').sockets;
@@ -124,10 +122,5 @@ exports.removeUnplayed = function(req, res) {
 function broadcastPlaylist() {
 	// broadcast updated playlist queue object to all clients
   var sockets = require('../app').sockets;
-<<<<<<< HEAD
-	sockets.emit('playlist', { playlist: playlist.queue });
-}
-=======
 	sockets.emit('playlist', { playlist: playlist.queue, currentSong: playlist.currentSong });
 }
->>>>>>> 0bc6d652bda654e99496ddfde43b3961e7c9f665
