@@ -58,10 +58,9 @@ object {
 
 #playlist_item_index {
     color: #aaa;
-    top:20%;
     text-align: center;
+    padding-top:6px;
     font-size: 1.5em;
-    line-height: 52px;
     display: table-cell;
     vertical-align: middle;
 }
@@ -103,10 +102,11 @@ object {
 #search_box {
     margin: 4px 0px 3px 0px;
     width: 100%;
-    height: 52px;
-    padding:5px;
+    height: 48px;
+    padding:5px 15px;
     font-size: 1.3em;
-    border:1px solid #5b9ce8;
+    border:3px solid #5b9ce8;
+    background:url("../img/searchbg.png") right no-repeat;
 }
 
 .search_result {
@@ -142,7 +142,7 @@ object {
 }
 
 .search_result .meta_data {
-    line-height: 52px;
+	padding-top:5px;
     font-size: 1.4em;
 }
 
@@ -190,13 +190,14 @@ object {
 
 .party_code {
 	line-height:1em;
+	display:none ! important;
 }
 
 .logo {
 	display: table-cell;
-	height: 50px;
+	height: auto;
 	width: auto;
-	padding: 5px;
+	padding: 8px;
 	vertical-align: middle;
 	position:absolute;
 	left:0px;
@@ -212,6 +213,10 @@ object {
     margin: 20px auto;
 }
 
+.player_panel .button {
+	margin-top:10px;
+	font-size: 28px;
+}
 .player {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -260,6 +265,14 @@ progress::-webkit-progress-bar{
     background-color: #ccc;
 }
 
+.forward_button {
+	display:none	! important;
+}
+
+.restart_button {
+	display:none	! important;
+}
+
 .button {
 	display: inline-block;
     font-size: 40px;
@@ -269,6 +282,7 @@ progress::-webkit-progress-bar{
     cursor: pointer;
 }
 #volume {
+	display:none;
 	width: 10%;
 	font-size: 25px;
 }
