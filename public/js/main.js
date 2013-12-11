@@ -15,6 +15,11 @@ var socket = io.connect();
 
 $(document).ready(function() {
     initLoadingScreen();
+    /*
+    if (localStorage['isHost'] === undefined) {
+        window.location.replace('/');
+    }
+    */
 
     // TEMP LOCATION
     // on page load use SWFObject to load the API swf into div#apiswf

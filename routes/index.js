@@ -1,6 +1,8 @@
 var Track = require('../objects/track');
 var Playlist = require('../objects/playlist_obj');
 var playlist = new Playlist.Playlist();
+var global_access_token = "";
+var global_access_token_secret = "";
 
 // Initialize OAuth Object
 var OAuth = require('OAuth');
@@ -33,8 +35,9 @@ exports.main = function(req, res){
     function(error, oauth_access_token, oauth_access_token_secret, results2) {
     	req.session.oauth_access_token = oauth_access_token;
 			req.session.oauth_access_token_secret = oauth_access_token_secret;
+      global_access_token = oauth_access_token;
+      global_access_token_secret = oauth_access_token_secret;
     });
-
   res.render('main');
 };
 
@@ -63,8 +66,8 @@ exports.search = function(req, res) {
 
 	oauth.post(
     "http://api.rdio.com/1/",
-    req.session.oauth_access_token,
-    req.session.oauth_access_token_secret,
+    global_access_token,
+    global_access_token_secret,
     params,
     function(err, response) {
     	var response = JSON.parse(response);
