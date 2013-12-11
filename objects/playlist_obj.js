@@ -1,6 +1,7 @@
 exports.Playlist = function() {
 	this.queue = [];
 	this.queueMap = {};
+	this.currentSong = null;
 }
 
 // sorts the queue based on number of likes for each track
@@ -28,6 +29,7 @@ exports.Playlist.prototype.upvote = function(trackKey) {
 // removes a song from the queue because it is now playing
 exports.Playlist.prototype.removePlayed = function() {
 	console.log('[mac10] removing ' + this.queue[0].name);
+	this.currentSong = this.queueMap[this.queue[0].key];
 	delete this.queueMap[this.queue[0].key];
 	this.queue = this.queue.slice(1);
 	console.log('[mac10] successfully removed played');

@@ -122,5 +122,5 @@ exports.removeUnplayed = function(req, res) {
 function broadcastPlaylist() {
 	// broadcast updated playlist queue object to all clients
   var sockets = require('../app').sockets;
-	sockets.emit('playlist', { playlist: playlist.queue });
+	sockets.emit('playlist', { playlist: playlist.queue, currentSong: playlist.currentSong });
 }
