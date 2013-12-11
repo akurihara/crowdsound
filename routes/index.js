@@ -28,16 +28,18 @@ exports.index = function(req, res){
 };
 
 exports.main = function(req, res){
-	oauth.getOAuthAccessToken(
-		req.session.oauth_token, 
-    req.session.oauth_token_secret,
-    req.param('oauth_verifier'),
-    function(error, oauth_access_token, oauth_access_token_secret, results2) {
-    	req.session.oauth_access_token = oauth_access_token;
-			req.session.oauth_access_token_secret = oauth_access_token_secret;
-      global_access_token = oauth_access_token;
-      global_access_token_secret = oauth_access_token_secret;
-    });
+  if (req.session.oauth_access_token) {
+  	oauth.getOAuthAccessToken(
+  		req.session.oauth_token, 
+      req.session.oauth_token_secret,
+      req.param('oauth_verifier'),
+      function(error, oauth_access_token, oauth_access_token_secret, results2) {
+      	req.session.oauth_access_token = oauth_access_token;
+  			req.session.oauth_access_token_secret = oauth_access_token_secret;
+        global_access_token = oauth_access_token;
+        global_access_token_secret = oauth_access_token_secret;
+      });
+  }
   res.render('main');
 };
 

@@ -24,7 +24,7 @@ function displaySongs(results) {
         $(".search_results").append(d);
 
         var inPlaylistState = item.inPlaylist ? "in_playlist" : "addable";
-        var add = $("<span class='glyphicon glyphicon-plus " + inPlaylistState + "'></span>");
+        var add = $("<span class='glyphicon glyphicon-plus blue " + inPlaylistState + "'></span>");
 
         add.attr({
             "songname" : item.song_name
@@ -58,8 +58,25 @@ function displaySongs(results) {
         		var duration = $(this).attr("duration");
 
                 $(this).hide();
-
-                postSong(trackKey, songName, artist, album, duration);
+                var mq = window.matchMedia( "(max-width: 770px)" );
+                var animation = function() {
+                    if (mq.matches) {
+                        $(".search_panel").animate({left: '770'}, function() {
+                            $(".search_panel").hide();
+                            $(".m_player_panel").show();
+                            $(".playlist_panel").show().css({
+                                left: -($(".playlist_panel").width())
+                            }).animate({
+                                left: 0
+                            }, function() {
+                                $(".back_button").hide();
+                                $(".add_song_button").show();
+                                $(".search_panel").animate({left:'0px'});
+                            });
+                        });
+                    }
+                }
+                postSong(trackKey, songName, artist, album, duration, animation);
             });
         });
     }

@@ -106,20 +106,20 @@ $(window).resize(function() {
 });
 
 function handleMobileBrowser() {
-    var mq = window.matchMedia( "(max-width: 480px)" );
+    var mq = window.matchMedia( "(max-width: 770px)" );
     if (!mq.matches) {
     } else {
         $(".add_song_button").unbind();
         $(".add_song_button").click(function() {
             async.parallel([
                 function(callback) {
-                    $(".playlist_panel").animate({right: '480px'}, function() {
+                    $(".playlist_panel").animate({right: '770'}, function() {
                         $(".playlist_panel").hide();
                         callback(null, "ok");  
                     });
                 },
                 function(callback) {
-                    $(".m_player_panel").animate({right: '480px'}, function() {
+                    $(".m_player_panel").animate({right: '770'}, function() {
                         $(".m_player_panel").hide();
                         callback(null, "ok");
                     });
@@ -144,7 +144,7 @@ function handleMobileBrowser() {
 
         $(".back_button").unbind();
         $(".back_button").click(function() {
-            $(".search_panel").animate({left: '480px'}, function() {
+            $(".search_panel").animate({left: '770'}, function() {
                 $(".search_panel").hide();
                 $(".m_player_panel").show();
                 $(".playlist_panel").show().css({
