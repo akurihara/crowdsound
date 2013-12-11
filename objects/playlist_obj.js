@@ -14,6 +14,9 @@ exports.Playlist.prototype.sortQueue = function() {
 }
 
 exports.Playlist.prototype.addTrack = function(track) {
+	if (currentSong === null) {
+		currentSong = track;
+	}
 	this.queueMap[track.key] = track;
 	this.queue.push(track);
 	console.log('[mac10] added track ' + track.name);
