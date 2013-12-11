@@ -30,6 +30,8 @@ function displaySongs(results) {
             "songname" : item.song_name
           , "artist": item.artist
           , "album": item.album
+	  , "trackKey": item.key
+	  , "duration": item.duration
         });
 
         $("#search_result"+i).loadTemplate($("#search_result"),
@@ -52,8 +54,12 @@ function displaySongs(results) {
                 var songName= $(this).attr("songName");
                 var artist = $(this).attr("artist");
                 var album = $(this).attr("album");
-                alert("sending: '" + songName + " : " + artist + "' to server");
-                addSong(songName, artist, album);
+        		var trackKey = $(this).attr("trackKey");
+        		var duration = $(this).attr("duration");
+
+                $(this).hide();
+
+                postSong(trackKey, songName, artist, album, duration);
             });
         });
     }

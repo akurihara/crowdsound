@@ -14,6 +14,13 @@ var oauth = new OAuth.OAuth(
   "HMAC-SHA1"
 );
 
+exports.initSockets = function(){
+  var sockets = require('../app').sockets;
+  sockets.on('connection', function (socket) {
+    socket.emit('playlist', { playlist: playlist.queue });
+  });
+}
+
 exports.index = function(req, res){
   res.render('index');
 };
@@ -36,7 +43,8 @@ exports.login = function(req, res){
 		req.session.oa = oauth;
 		req.session.oauth_token = oauth_token;
 		req.session.oauth_token_secret = oauth_token_secret;
-	                
+    req.session.host = true;
+
 		// Redirect the user to authorize the token
 		res.redirect(results.login_url + '?oauth_token=' + oauth_token);              
 	});
@@ -64,7 +72,9 @@ exports.search = function(req, res) {
 
     	search_results.forEach(function(track) {
     		track.song_name = track.name;
-        track.inPlaylist = false;
+
+        var inPlaylist = playlist.contains(track.key);
+        track.inPlaylist = inPlaylist;
     	});
     	res.send(search_results);
     }
@@ -73,23 +83,34 @@ exports.search = function(req, res) {
 
 exports.addSong = function(req, res) {
 	var data = req.body;
+
+  if (playlist.contains(data.key)) {
+    res.end('Song already in playlist.');
+    return;
+  }
+
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
+  // res.writeHead(200, { "Content-Type": "application/json" });
+  res.end("Song added!");
 	broadcastPlaylist();
 };
 
 exports.upvote = function(req, res) {
 	playlist.upvote(req.body.key);
+  res.writeHead(200, { "Content-Type": "application/json" });
 	broadcastPlaylist();
 };
 
 exports.removePlayed = function(req, res) {
 	playlist.removePlayed();
+  res.writeHead(200, { "Content-Type": "application/json" });
   broadcastPlaylist();
 };
 
 exports.removeUnplayed = function(req, res) {
 	playlist.removeUnplayed(req.body.key);
+  res.writeHead(200, { "Content-Type": "application/json" });
 	broadcastPlaylist();
 };
 
