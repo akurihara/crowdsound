@@ -37,7 +37,7 @@
                                 <span class="now_playing_album"></span>
                             </div>
                         </div>
-                        <div class="col-xs-3" trackkey="playlist_item_key>
+                        <div class="col-xs-3" trackkey="playlist_item_key">
                             <span class="glyphicon glyphicon-heart" trackkey="playlist_item_key"></span>
                         </div>
                     </div>
@@ -57,11 +57,11 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
-                        <div class="now_playing_song text-center" duration="2:00" trackkey="playlist_item_key" href="#">
+                        <div class="now_playing_song text-center" duration="playlist_item_duration" trackkey="playlist_item_key" href="#">
                         </div>
                         <div href="#" class="text-center">
-                            <span class="now_playing_artist">The Proclaimers</span>,
-                            <span class="now_playing_album"></span>
+                            <span class="now_playing_artist">m_currentSong.songName</span>,
+                            <span class="now_playing_album">m_currentSong.album</span>
                         </div>
                     </div>
                     <input type="range" class="seek" id="seek" value="0" max="100"/>
@@ -102,13 +102,13 @@
                     <div id="playlist_item_index" data-content="playlist_item_index"></div>
                 </div>
                 <div class="col-xs-8 song_data">
-                    <div id="playlist_item_song_name" trackkey="playlist_item_key data-content="playlist_item_song_name"></div>
+                    <div id="playlist_item_song_name" trackkey="playlist_item_key" data-content="playlist_item_song_name"></div>
                     <div>
                         <span data-content="playlist_item_artist"></span>,
                         <span data-content="playlist_item_album"></span>
                     </div>
                 </div>
-                <div class="col-xs-2 meta_data" trackkey="playlist_item_key>
+                <div class="col-xs-2 meta_data" trackkey="playlist_item_key">
                     <span class="playlist_item_like" data-content="playlist_item_like"></span>
                     <!--span id="playlist_item_rating" data-content="playlist_item_rating"></span-->
                 </div>

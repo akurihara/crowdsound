@@ -46,7 +46,17 @@ var initPlaylist = function(playlist) {
 	            });
 	    };
 	});
-	
+	/*
+	function() {
+		getRemovePlayed();
+		playlist.
+		$('.now_playing_song').html(m_currentSong.songName);
+    	$('.now_playing_artist').html(m_currentSong.artist);
+    	$('.now_playing_album').html(m_currentSong.album);
+    	$('.progress').attr("max", m_currentSong.duration);
+    	
+	}
+	*/
 	/*
 	 $(".likeable").each(function() {
             $(this).unbind();
