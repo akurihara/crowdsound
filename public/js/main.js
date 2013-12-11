@@ -3,7 +3,7 @@ var PLAYING = 0;
 var PAUSED = 1;
 
 // GLOBAL VARIABLES
-var m_id = "HQ12QM";
+var m_id = "XH53DJ";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
 var m_currentSong = { songName:"", artist:"", album:"", 
@@ -14,8 +14,12 @@ var apiswf = null;
 var callback_object = {};
 var socket = io.connect();
 
+var likedSongs = {};
+
 $(document).ready(function() {
     initLoadingScreen();
+    $('.seek').hide();
+    $('.play_button').hide();
     /*
     if (localStorage['isHost'] === undefined) {
         window.location.replace('/');
@@ -84,7 +88,6 @@ $(document).ready(function() {
             m_currentSong.key=d3[0].key;
             */
             initPlaylist(m_playlist);
-            populatePartyData();
             
             initSearch();
             initGuestPlayer();
@@ -119,6 +122,7 @@ function handleMobileBrowser() {
     var mq = window.matchMedia( "(max-width: 770px)" );
     if (!mq.matches) {
     } else {
+        populatePartyData();
         $(".add_song_button").unbind();
         $(".add_song_button").click(function() {
             async.parallel([

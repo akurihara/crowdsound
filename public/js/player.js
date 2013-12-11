@@ -52,7 +52,7 @@ function initHostPlayer() {
     callback_object.positionChanged = function positionChanged(currTime) {
         var duration = $('.now_playing_song').attr('duration');
         // song is over
-        if (parseInt(currTime) == duration) {
+        if (duration-parseInt(currTime) <= 2) {
             var newSong = $('#playlist_item_0')
 
             // set all the current song stuff to the next song in queue
@@ -72,8 +72,8 @@ function initHostPlayer() {
             $('.now_playing_song').attr({'trackKey': m_currentSong.key});
 
             console.log('GET REMOVE PLAYED - end of song');
-            // getRemovePlayed();
-            postRemoveUnplayed(m_currentSong.key);
+            getRemovePlayed();
+            // postRemoveUnplayed(m_currentSong.key);
             // start playing next song
             apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
         }

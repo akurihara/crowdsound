@@ -42,6 +42,7 @@ exports.Playlist.prototype.removePlayed = function() {
 exports.Playlist.prototype.removeUnplayed = function(trackKey) {
 	// set likes to -1, then sort so it moves to the end of the queue
 	if (this.queueMap[trackKey] !== undefined) {
+		this.currentSong = this.queueMap[trackKey];
 		this.queueMap[trackKey].numLikes = -1;
 		this.sortQueue();
 
