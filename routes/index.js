@@ -1,6 +1,8 @@
 var Track = require('../objects/track');
 var Playlist = require('../objects/playlist_obj');
 var playlist = new Playlist.Playlist();
+var global_access_token = "";
+var global_access_token_secret = "";
 
 // Initialize OAuth Object
 var OAuth = require('OAuth');
@@ -26,15 +28,18 @@ exports.index = function(req, res){
 };
 
 exports.main = function(req, res){
-	oauth.getOAuthAccessToken(
-		req.session.oauth_token, 
-    req.session.oauth_token_secret,
-    req.param('oauth_verifier'),
-    function(error, oauth_access_token, oauth_access_token_secret, results2) {
-    	req.session.oauth_access_token = oauth_access_token;
-			req.session.oauth_access_token_secret = oauth_access_token_secret;
-    });
-
+  if (req.session.oauth_access_token) {
+  	oauth.getOAuthAccessToken(
+  		req.session.oauth_token, 
+      req.session.oauth_token_secret,
+      req.param('oauth_verifier'),
+      function(error, oauth_access_token, oauth_access_token_secret, results2) {
+      	req.session.oauth_access_token = oauth_access_token;
+  			req.session.oauth_access_token_secret = oauth_access_token_secret;
+        global_access_token = oauth_access_token;
+        global_access_token_secret = oauth_access_token_secret;
+      });
+  }
   res.render('main');
 };
 
@@ -63,8 +68,8 @@ exports.search = function(req, res) {
 
 	oauth.post(
     "http://api.rdio.com/1/",
-    req.session.oauth_access_token,
-    req.session.oauth_access_token_secret,
+    global_access_token,
+    global_access_token_secret,
     params,
     function(err, response) {
     	var response = JSON.parse(response);
