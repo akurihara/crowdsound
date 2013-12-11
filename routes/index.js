@@ -14,6 +14,13 @@ var oauth = new OAuth.OAuth(
   "HMAC-SHA1"
 );
 
+exports.initSockets = function(){
+  var sockets = require('../app').sockets;
+  sockets.on('connection', function (socket) {
+    socket.emit('playlist', { playlist: playlist.queue });
+  });
+}
+
 exports.index = function(req, res){
   res.render('index');
 };
@@ -81,7 +88,7 @@ exports.addSong = function(req, res) {
     res.end('Song already in playlist.');
     return;
   }
-  
+
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
   // res.writeHead(200, { "Content-Type": "application/json" });
