@@ -8,7 +8,7 @@ var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
 var m_currentSong = { songName:"", artist:"", album:"", 
     rating:-1, time:-1, duration:-1, isPlaying:false } 
-var m_isHost = false;
+var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
 var socket = io.connect();
@@ -17,7 +17,12 @@ $(document).ready(function() {
     initLoadingScreen();
 
     // TEMP LOCATION
-    // on page load use SWFObject to load the API swf into div#apiswf
+
+    if (m_isHost) {
+        initSearch();
+        initPlaylist(m_playlist);
+
+        // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
             'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
             'domain': 'localhost', 
@@ -31,11 +36,8 @@ $(document).ready(function() {
               'apiswf', // the ID of the element that will be replaced with the SWF
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
-          $('.play_button').click(function() {
-                apiswf.rdio_play('t2891787');
-          });
-
-    if (m_isHost) {
+          // TODO: get rid of this
+          $('.now_playing_song').attr({'trackKey': 't2891787', 'duration': 100});
     } else {
         async.series([
             function(callback) {
@@ -75,20 +77,23 @@ $(document).ready(function() {
 
             initPlaylist(m_playlist);
             populatePartyData();
-            initSearch();
             initGuestPlayer();
-
+            initSearch();
             handleMobileBrowser();
             closeLoadingScreen();
         });
     }
 });
 
-// Called once the API SWF has loaded and is ready to accept method calls.
-callback_object.ready = function ready(user) {
-  // find the embed/object element
-  apiswf = $('#apiswf').get(0);
-};
+
+if (m_isHost) {
+    // Called once the API SWF has loaded and is ready to accept method calls.
+    callback_object.ready = function ready(user) {
+      // find the embed/object element
+      apiswf = $('#apiswf').get(0);
+    }; 
+}
+
 
 // socket.io stuff
 

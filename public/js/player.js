@@ -39,7 +39,7 @@ function initHostPlayer() {
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
             //song.play();
             alert('about to play');
-            apiswf.rdio_play('t2891787');
+            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
         } else {
             m_currentSong.isPlaying = false;
             playBtn.removeClass('glyphicon-pause').addClass('glyphicon-play');
@@ -50,14 +50,23 @@ function initHostPlayer() {
 
     // seek bar functionality
     slider.bind("change", function() {
-        song.currentTime = $(this).val();
+        apiswf.rdio_seek($(this).val());
         $("#seek").attr("max", song.duration);
     });
 
-    // seek indicator moving with song
-    $(song).bind('timeupdate', function() {
-        var currTime = song.currentTime;
-        var duration = song.duration;
+    callback_object.positionChanged = function positionChanged(currTime) {
+        var duration = $('.now_playing_song').attr('duration');
+        // song is over
+        if (currTime == duration) {
+            // set all the current song stuff to the next song in queue
+            //$('.now_playing_song').attr({'trackKey': });
+
+            getRemovePlayed();
+            // start playing next song
+            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+        }
+
+        
         var rem = parseInt(duration - currTime, 10);
         slider.value = (currTime/duration)*slider.max;
 
@@ -66,7 +75,7 @@ function initHostPlayer() {
         secs = rem - mins*60;
                     
         timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
-    });
+    }
 
     // volume control
 
@@ -81,7 +90,7 @@ function initHostPlayer() {
             var value = volumeSlider.slider('value'),  
             volume = $('#volume');  
 
-            song.volume = value*1.0/100;
+            apiswf.rdio_setVolume(value*1.0/100);
   
             if (value <= 0) {
                 volume.removeClass();
