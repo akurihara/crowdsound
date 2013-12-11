@@ -31,8 +31,12 @@ $(document).ready(function() {
 
         // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
-            'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
+            //'playbackToken': 'GBRSqEKT_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmNyb3dkc291bmQuYXdzLmFmLmNt_WLMmkAuiaj0NHWbt_uXDQ==',
+              'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
+
+	  //'domain': 'crowdsound.aws.af.cm', 
             'domain': 'localhost', 
+
             'listener': 'callback_object'    // the global name of the object that will receive callbacks from the SWF
             };
           var params = {

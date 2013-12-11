@@ -50,6 +50,10 @@
     .search_panel {
         display: none;
     }
+    
+    #search_box {
+    	width:90%;	
+    }
     .addable {
         color: #5b9ce8;
         size: 20px;

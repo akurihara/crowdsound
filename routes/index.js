@@ -5,14 +5,15 @@ var global_access_token = "";
 var global_access_token_secret = "";
 
 // Initialize OAuth Object
-var OAuth = require('OAuth');
+var OAuth = require('oauth');
 var oauth = new OAuth.OAuth(
   "http://api.rdio.com/oauth/request_token",
   "http://api.rdio.com/oauth/access_token",
   "62nph9uusuqtqt3vdykqr2bx",
   "KVgu9dkymP",
   "1.0",
-  "http://localhost:3000/main",
+  //"http://crowdsound.aws.af.cm/main",
+  "http://localhost:3000/main/",
   "HMAC-SHA1"
 );
 
