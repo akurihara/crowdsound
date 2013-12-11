@@ -1,4 +1,4 @@
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 1000px) {
     body {
         font-size: small;
         width: 100%;
@@ -49,6 +49,10 @@
     /* SEARCH PANEL */
     .search_panel {
         display: none;
+    }
+    
+    #search_box {
+    	width:90%;	
     }
     .addable {
         color: #5b9ce8;

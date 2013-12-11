@@ -35,8 +35,12 @@ $(document).ready(function() {
 
         // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
-            'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
+            //'playbackToken': 'GBRSqEKT_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmNyb3dkc291bmQuYXdzLmFmLmNt_WLMmkAuiaj0NHWbt_uXDQ==',
+              'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
+
+	  //'domain': 'crowdsound.aws.af.cm', 
             'domain': 'localhost', 
+
             'listener': 'callback_object'    // the global name of the object that will receive callbacks from the SWF
             };
           var params = {
@@ -119,7 +123,7 @@ $(window).resize(function() {
 });
 
 function handleMobileBrowser() {
-    var mq = window.matchMedia( "(max-width: 770px)" );
+    var mq = window.matchMedia( "(max-width: 1000px)" );
     if (!mq.matches) {
     } else {
         populatePartyData();
@@ -127,13 +131,13 @@ function handleMobileBrowser() {
         $(".add_song_button").click(function() {
             async.parallel([
                 function(callback) {
-                    $(".playlist_panel").animate({right: '770'}, function() {
+                    $(".playlist_panel").animate({right: '1000'}, function() {
                         $(".playlist_panel").hide();
                         callback(null, "ok");  
                     });
                 },
                 function(callback) {
-                    $(".m_player_panel").animate({right: '770'}, function() {
+                    $(".m_player_panel").animate({right: '1000'}, function() {
                         $(".m_player_panel").hide();
                         callback(null, "ok");
                     });
@@ -158,7 +162,7 @@ function handleMobileBrowser() {
 
         $(".back_button").unbind();
         $(".back_button").click(function() {
-            $(".search_panel").animate({left: '770'}, function() {
+            $(".search_panel").animate({left: '1000'}, function() {
                 $(".search_panel").hide();
                 $(".m_player_panel").show();
                 $(".playlist_panel").show().css({
