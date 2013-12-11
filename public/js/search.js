@@ -54,10 +54,11 @@ function displaySongs(results) {
                 var songName= $(this).attr("songName");
                 var artist = $(this).attr("artist");
                 var album = $(this).attr("album");
-		var trackKey = $(this).attr("trackKey");
-		var duration = $(this).attr("duration");
+        		var trackKey = $(this).attr("trackKey");
+        		var duration = $(this).attr("duration");
 
-                alert("sending: '" + songName + " : " + artist + "' to server");
+                $(this).hide();
+
                 postSong(trackKey, songName, artist, album, duration);
             });
         });
