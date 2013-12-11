@@ -28,9 +28,8 @@ var initPlaylist = function(playlist) {
    
 	socket.on('playlist', function(object) {
 		if (m_currentSong == null && object.playlist[0] != null) {
-  			alert('setting current song');
   		   m_currentSong = {};
-   		   m_currentSong.songName = object.playlist[0].songName;
+   		   m_currentSong.songName = object.playlist[0].name;
            m_currentSong.artist = object.playlist[0].artist;
            m_currentSong.album = object.playlist[0].album;
            m_currentSong.rating = object.playlist[0].rating;
@@ -50,7 +49,7 @@ var initPlaylist = function(playlist) {
            getRemovePlayed();
            apiswf.rdio_play(object.playlist[0].key);
            m_currentSong.isPlaying = true;
-            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+           playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
   		}
 
 	    $(".playlist").empty();
