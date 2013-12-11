@@ -22,26 +22,6 @@ $(document).ready(function() {
     }
     */
 
-    // temp
-    initSearch();
-        initPlaylist(m_playlist);
-        initHostPlayer();
-
-        // on page load use SWFObject to load the API swf into div#apiswf
-          var flashvars = {
-            'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
-            'domain': 'localhost', 
-            'listener': 'callback_object'    // the global name of the object that will receive callbacks from the SWF
-            };
-          var params = {
-            'allowScriptAccess': 'always'
-          };
-          var attributes = {};
-          swfobject.embedSWF('http://www.rdio.com/api/swf/', // the location of the Rdio Playback API SWF
-              'apiswf', // the ID of the element that will be replaced with the SWF
-              1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
-
-
     if (localStorage['isHost']) {
         initSearch();
         initPlaylist(m_playlist);
