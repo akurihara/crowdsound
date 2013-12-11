@@ -79,7 +79,9 @@ exports.addSong = function(req, res) {
 
   if (playlist.contains(data.key)) {
     res.end('Song already in playlist.');
+    return;
   }
+  
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
   // res.writeHead(200, { "Content-Type": "application/json" });
