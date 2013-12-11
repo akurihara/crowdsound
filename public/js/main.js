@@ -117,19 +117,6 @@ function initCallbacks() {
                 apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
             }
 
-            
-            var rem = parseInt(duration - currTime, 10);
-            slider.value = (currTime/duration)*slider.max;
-
-            pos = (currTime / duration) * 100,
-            mins = Math.floor(rem/60,10),
-            secs = rem - mins*60;
-                        
-            timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
-        }
-    }
-}
-
 // socket.io stuff
 socket.on('disconnect', function() { 
     console.log('socket.io disconnected');
