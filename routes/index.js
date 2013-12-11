@@ -3,6 +3,7 @@ var Playlist = require('../objects/playlist_obj');
 var playlist = new Playlist.Playlist();
 
 // Initialize OAuth Object
+/*
 var OAuth = require('OAuth');
 var oauth = new OAuth.OAuth(
   "http://api.rdio.com/oauth/request_token",
@@ -13,6 +14,7 @@ var oauth = new OAuth.OAuth(
   "http://localhost:3000/main",
   "HMAC-SHA1"
 );
+*/
 
 exports.initSockets = function(){
   var sockets = require('../app').sockets;

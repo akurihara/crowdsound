@@ -6,7 +6,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var socketio = require('socket.io');
+//var socketio = require('socket.io');
 var app = express();
 
 require('./db');
@@ -46,7 +46,7 @@ var server = app.listen(app.get('port'), function(){
 });
 
 // SOCKET STUFF!
-var io = socketio.listen(server, { log: false });
+//var io = socketio.listen(server, { log: false });
 /*
 io.sockets.on('connection', function (socket) {
   socket.emit('message', { message: 'Welcome to CrowdSound!' });
@@ -56,5 +56,5 @@ io.sockets.on('connection', function (socket) {
 });
 */
 
-exports.sockets = io.sockets;
-routes.initSockets();
+//exports.sockets = io.sockets;
+//routes.initSockets();
