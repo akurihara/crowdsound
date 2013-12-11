@@ -22,7 +22,7 @@ $(document).ready(function() {
     }
     */
 
-    if (m_isHost) {
+    if (localStorage['isHost']) {
         initSearch();
         initPlaylist(m_playlist);
         initHostPlayer();
@@ -42,6 +42,7 @@ $(document).ready(function() {
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
     } else {
+        /*
         async.series([
             function(callback) {
                 getPartyData(m_id, function(d1) {
@@ -83,10 +84,10 @@ $(document).ready(function() {
             populatePartyData();
             initSearch();
             initGuestPlayer();
-
+            */
             handleMobileBrowser();
             closeLoadingScreen();
-        });
+        //});
     }
 });
 
