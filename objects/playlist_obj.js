@@ -43,3 +43,7 @@ exports.Playlist.prototype.removeUnplayed = function(trackKey) {
 	this.queue = this.queue.slice(0, this.queue.length-1);
 	console.log('[mac10] successfully removed unplayed');
 }
+
+exports.Playlist.prototype.contains = function(trackKey) {
+	return (this.queueMap[trackKey] !== undefined);
+}
