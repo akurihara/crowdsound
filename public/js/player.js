@@ -46,8 +46,7 @@ function initHostPlayer() {
     // seek bar functionality
     slider.bind("change", function() {
         apiswf.rdio_seek($(this).val());
-        $("#seek").attr("max", $('.now_playing_song').attr('duration'));
-        console.log('slider max ' + $("#seek").attr("max"));
+        $(".seek").attr("max", $('.now_playing_song').attr('duration'));
     });
 
     callback_object.positionChanged = function positionChanged(currTime) {

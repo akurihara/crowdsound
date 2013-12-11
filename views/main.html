@@ -31,7 +31,7 @@
                 <div class="col-xs-9 player_info">
                     <div class="row">
                         <div class="col-xs-9">
-                            <span class="now_playing_song" trackkey="playlist_item_key" duration="playlist_item_duration"></span>
+                            <div class="now_playing_song" trackkey="playlist_item_key" duration="playlist_item_duration"></div>
                             <div class="text-left">
                                 <span class="now_playing_artist"></span>,
                                 <span class="now_playing_album"></span>
@@ -64,7 +64,7 @@
                             <span class="now_playing_album"></span>
                         </div>
                     </div>
-                    <input type="range" class="seek" id="seek" value="0" max="100"/>
+                    <progress class="seek progress" value="0" max="100"></progress>
                     <p id="time_left"/>
                 </div>
                 <div class="col-sm-3">
