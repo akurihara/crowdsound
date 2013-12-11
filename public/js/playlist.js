@@ -1,6 +1,22 @@
 var initPlaylist = function(playlist) {
     console.log("initialized playlist");
 
+  		if (m_currentSong == null) {
+  			m_currentSong = {};
+   		   m_currentSong.songName = playlist[0].songName;
+           m_currentSong.artist = playlist[0].artist;
+           m_currentSong.album = playlist[0].album;
+           m_currentSong.rating = playlist[0].rating;
+           m_currentSong.time = playlist[0].time;
+           m_currentSong.duration = playlist[0].duration;
+           m_currentSong.isPlaying= playlist[0].isPlaying;
+           m_currentSong.key= playlist[0].key;
+           
+           getRemovePlayed();
+           apiswf.rdio_play(playlist[0].key);
+  		}
+    
+
     $(".playlist").empty();
     for (var i=0; i<playlist.length; i++) {
         var item = playlist[i];
@@ -20,10 +36,13 @@ var initPlaylist = function(playlist) {
                 playlist_item_like: like,
                 playlist_item_key: item.key
             });
+    		
+
+
+    
     };
    
 	socket.on('playlist', function(object) {
-		console.log(object);
 	    $(".playlist").empty();
 	    for (var i=0; i<object.playlist.length; i++) {
 	        var item = object.playlist[i];
@@ -32,7 +51,6 @@ var initPlaylist = function(playlist) {
 	
 	        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
 	        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-	        console.log(item.key);
 	
 	        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
 	            {
