@@ -11,9 +11,9 @@ function getPartyData(id, callback) {
     $.ajax({
         url: "..."
       , 
-    })
-     .done(callback(data));
-     .fail(...);
+    }).done(function(data) {
+        callback(data);
+    });
      */
     return callback(dummyPartyData);
 };

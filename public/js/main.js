@@ -6,9 +6,10 @@ var PAUSED = 1;
 var m_id = "HQ12QM";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
-var m_currentSong = { songName:"", artist:"", album:"", 
-    rating:-1, time:-1, duration:-1, isPlaying:false } 
-var m_isHost = false;
+// var m_currentSong = { songName:"", artist:"", album:"", 
+//     rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
+var m_currentSong = null;
+var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
 var socket = io.connect();
@@ -21,8 +22,12 @@ $(document).ready(function() {
     }
     */
 
-    // TEMP LOCATION
-    // on page load use SWFObject to load the API swf into div#apiswf
+    if (m_isHost) {
+        initSearch();
+        initPlaylist(m_playlist);
+        initHostPlayer();
+
+        // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
             'playbackToken': 'GAlSpjTr_____2R2cHlzNHd5ZXg3Z2M0OXdoaDY3aHdrbmxvY2FsaG9zdGYUDYwpOao39sRSEQLBwUw=',
             'domain': 'localhost', 
@@ -36,11 +41,6 @@ $(document).ready(function() {
               'apiswf', // the ID of the element that will be replaced with the SWF
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
-          $('.play_button').click(function() {
-                apiswf.rdio_play('t2891787');
-          });
-
-    if (m_isHost) {
     } else {
         async.series([
             function(callback) {
@@ -74,6 +74,7 @@ $(document).ready(function() {
             m_currentSong.time = d2.time;
             m_currentSong.duration = d2.duration;
             m_currentSong.isPlaying= d2.isPlaying;
+            m_currentSong.key=d2.key;
 
             var d3 = results[2];
             m_playlist = d3;
@@ -93,7 +94,31 @@ $(document).ready(function() {
 callback_object.ready = function ready(user) {
   // find the embed/object element
   apiswf = $('#apiswf').get(0);
+
 };
+
+    callback_object.positionChanged = function positionChanged(currTime) {
+        var duration = $('.now_playing_song').attr('duration');
+        // song is over
+        if (currTime == duration) {
+            // set all the current song stuff to the next song in queue
+            //$('.now_playing_song').attr({'trackKey': });
+
+            getRemovePlayed();
+            // start playing next song
+            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+        }
+
+        
+        var rem = parseInt(duration - currTime, 10);
+        slider.value = (currTime/duration)*slider.max;
+
+        pos = (currTime / duration) * 100,
+        mins = Math.floor(rem/60,10),
+        secs = rem - mins*60;
+                    
+        timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
+    }
 
 // socket.io stuff
 
