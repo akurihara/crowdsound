@@ -7,7 +7,7 @@ var m_id = "HQ12QM";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
 var m_currentSong = { songName:"", artist:"", album:"", 
-    rating:-1, time:-1, duration:-1, isPlaying:false } 
+    rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
 var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
@@ -15,8 +15,6 @@ var socket = io.connect();
 
 $(document).ready(function() {
     initLoadingScreen();
-
-    // TEMP LOCATION
 
     if (m_isHost) {
         initSearch();
@@ -37,8 +35,6 @@ $(document).ready(function() {
               'apiswf', // the ID of the element that will be replaced with the SWF
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
-          // TODO: get rid of this
-          $('.now_playing_song').attr({'trackKey': 't2891787', 'duration': 100});
     } else {
         async.series([
             function(callback) {
@@ -72,29 +68,27 @@ $(document).ready(function() {
             m_currentSong.time = d2.time;
             m_currentSong.duration = d2.duration;
             m_currentSong.isPlaying= d2.isPlaying;
+            m_currentSong.key=d2.key;
 
             var d3 = results[2];
             m_playlist = d3;
 
             initPlaylist(m_playlist);
             populatePartyData();
-            initGuestPlayer();
             initSearch();
+            initGuestPlayer();
+
             handleMobileBrowser();
             closeLoadingScreen();
         });
     }
 });
 
-
-if (m_isHost) {
-    // Called once the API SWF has loaded and is ready to accept method calls.
-    callback_object.ready = function ready(user) {
-      // find the embed/object element
-      apiswf = $('#apiswf').get(0);
-    }; 
-}
-
+// Called once the API SWF has loaded and is ready to accept method calls.
+callback_object.ready = function ready(user) {
+  // find the embed/object element
+  apiswf = $('#apiswf').get(0);
+};
 
 // socket.io stuff
 
