@@ -82,7 +82,6 @@ function initHostPlayer() {
         var duration = $('.now_playing_song').attr('duration');
         // song is over
         if (parseInt(currTime) == duration) {
-            console.log('slider.attr(value) == 0');
             var newSong = $('#playlist_item_0')
 
             // set all the current song stuff to the next song in queue
