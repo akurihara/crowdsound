@@ -6,8 +6,9 @@ var PAUSED = 1;
 var m_id = "HQ12QM";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
-var m_currentSong = { songName:"", artist:"", album:"", 
-    rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
+// var m_currentSong = { songName:"", artist:"", album:"", 
+//     rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
+var m_currentSong = null;
 var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
@@ -88,6 +89,8 @@ $(document).ready(function() {
 callback_object.ready = function ready(user) {
   // find the embed/object element
   apiswf = $('#apiswf').get(0);
+
+  
 };
 
 // socket.io stuff

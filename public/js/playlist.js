@@ -1,22 +1,6 @@
 var initPlaylist = function(playlist) {
     console.log("initialized playlist");
 
-  		if (m_currentSong == null) {
-  			m_currentSong = {};
-   		   m_currentSong.songName = playlist[0].songName;
-           m_currentSong.artist = playlist[0].artist;
-           m_currentSong.album = playlist[0].album;
-           m_currentSong.rating = playlist[0].rating;
-           m_currentSong.time = playlist[0].time;
-           m_currentSong.duration = playlist[0].duration;
-           m_currentSong.isPlaying= playlist[0].isPlaying;
-           m_currentSong.key= playlist[0].key;
-           
-           getRemovePlayed();
-           apiswf.rdio_play(playlist[0].key);
-  		}
-    
-
     $(".playlist").empty();
     for (var i=0; i<playlist.length; i++) {
         var item = playlist[i];
@@ -43,6 +27,32 @@ var initPlaylist = function(playlist) {
     };
    
 	socket.on('playlist', function(object) {
+		if (m_currentSong == null && object.playlist[0] != null) {
+  			alert('setting current song');
+  		   m_currentSong = {};
+   		   m_currentSong.songName = object.playlist[0].songName;
+           m_currentSong.artist = object.playlist[0].artist;
+           m_currentSong.album = object.playlist[0].album;
+           m_currentSong.rating = object.playlist[0].rating;
+           m_currentSong.time = object.playlist[0].time;
+           m_currentSong.duration = object.playlist[0].duration;
+           m_currentSong.isPlaying= object.playlist[0].isPlaying;
+           m_currentSong.key= object.playlist[0].key;
+
+           $('.now_playing_song').html(m_currentSong.songName);
+		    $('.now_playing_artist').html(m_currentSong.artist);
+		    $('.now_playing_album').html(m_currentSong.album);
+		    $('.progress').attr("max", m_currentSong.duration);
+
+		    // busy loop until apiswf loaded
+           while (apiswf == null) {}
+
+           getRemovePlayed();
+           apiswf.rdio_play(object.playlist[0].key);
+           m_currentSong.isPlaying = true;
+            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+  		}
+
 	    $(".playlist").empty();
 	    for (var i=0; i<object.playlist.length; i++) {
 	        var item = object.playlist[i];
