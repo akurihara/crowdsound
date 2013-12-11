@@ -100,5 +100,5 @@ function initHostPlayer() {
 };
 
 function initPlayer(currSong) {
- 
+	
 }

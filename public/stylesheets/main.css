@@ -15,6 +15,15 @@ a {
     display: none; 
 }
 
+.glyphicon-heart, .glyphicon-heart-empty {
+    color: #ccc;
+    font-size: 28px;
+}
+
+.glyphicon-heart:hover, .glyphicon-heart-empty:hover {
+    color: #000;
+}
+
 /* PLAY LIST */
 
 .playlist {
@@ -30,13 +39,18 @@ a {
 .playlist_item {
     background-color: #eee;
     margin: 4px 0 4px 0;
-    padding: 4px;
+    padding: 7px;
+    height:52px;
 }
 
 #playlist_item_index {
     color: #aaa;
+    top:20%;
     text-align: center;
     font-size: 1.5em;
+    line-height: 52px;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .playlist_item .song_data {
@@ -54,7 +68,11 @@ a {
 }
     
 .playlist_item .meta_data {
+	top:20%;
+	display:table-cell;
+	vertical-align:middle;
     line-height: 52px;
+    text-align:center;
     font-size: 1.0em;
 }
 
@@ -63,6 +81,7 @@ a {
 #search_box {
     width: 100%;
     height: 35px;
+    padding:5px;
 }
 
 .search_result {
@@ -133,6 +152,10 @@ a {
 	height: 120px;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.party_code {
+	line-height:2em;
 }
 
 .logo {
