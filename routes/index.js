@@ -77,7 +77,7 @@ exports.search = function(req, res) {
 exports.addSong = function(req, res) {
 	var data = req.body;
 
-  if (playlist.contains(track.key)) {
+  if (playlist.contains(data.key)) {
     res.end('Song already in playlist.');
   }
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
