@@ -28,9 +28,7 @@ function initHostPlayer() {
     slider = $('.seek');
     timeLeft = $('#time_left');
 
-    song = new Audio('audio/I\'m_Gonna_Be.mp3');
-    song.volume = .35;
-    duration = song.duration;
+    duration = $('.now_playing_song').attr('duration');
 	
     // play button functionality
     playBtn.click(function() {
@@ -48,7 +46,8 @@ function initHostPlayer() {
     // seek bar functionality
     slider.bind("change", function() {
         apiswf.rdio_seek($(this).val());
-        $("#seek").attr("max", song.duration);
+        $("#seek").attr("max", $('.now_playing_song').attr('duration'));
+        console.log('slider max ' + $("#seek").attr("max"));
     });
 
     callback_object.positionChanged = function positionChanged(currTime) {
@@ -62,17 +61,17 @@ function initHostPlayer() {
             // start playing next song
             apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
         }
-
         
         var rem = parseInt(duration - currTime, 10);
-        slider.value = (currTime/duration)*slider.max;
+        //slider.value = (currTime/duration)*slider.max;
+        slider.attr('value', (currTime/duration)*slider.attr('max'));
 
         pos = (currTime / duration) * 100,
         mins = Math.floor(rem/60,10),
         secs = rem - mins*60;
                     
         timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
-    }
+    };
 
     // volume control
 
