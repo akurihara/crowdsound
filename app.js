@@ -57,3 +57,4 @@ io.sockets.on('connection', function (socket) {
 */
 
 exports.sockets = io.sockets;
+routes.initSockets();

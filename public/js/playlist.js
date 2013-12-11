@@ -17,11 +17,13 @@ var initPlaylist = function(playlist) {
                 playlist_item_artist: item.artist,
                 playlist_item_album: item.album,
                 playlist_item_rating: item.rating,
-                playlist_item_like: like
+                playlist_item_like: like,
+                playlist_item_key: item.key
             });
     };
    
-		socket.on('playlist', function(object) {
+	socket.on('playlist', function(object) {
+		console.log(object);
 	    $(".playlist").empty();
 	    for (var i=0; i<object.playlist.length; i++) {
 	        var item = object.playlist[i];
@@ -30,6 +32,7 @@ var initPlaylist = function(playlist) {
 	
 	        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
 	        var like = "<span class='glyphicon " + heartState + "'></span>"; 
+	        console.log(item.key);
 	
 	        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
 	            {
@@ -38,11 +41,25 @@ var initPlaylist = function(playlist) {
 	                playlist_item_artist: item.artist,
 	                playlist_item_album: item.album,
 	                playlist_item_rating: item.rating,
-	                playlist_item_like: like
+	                playlist_item_like: like,
+	                playlist_item_key: item.key
 	            });
 	    };
 	});
-
+	
+	/*
+	 $(".likeable").each(function() {
+            $(this).unbind();
+            $(this).click(function() {
+            	//item.like = true;
+            	
+                var songName= $(this).attr("songName");
+               	
+                postUpvote(trackKey);
+            });
+     });
+	*/
+	
 };
 
 

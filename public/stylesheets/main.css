@@ -76,6 +76,10 @@ a {
     font-size: 1.0em;
 }
 
+.playlist_item_like {
+    cursor: pointer;
+}
+
 /* SEARCH LIST */
 
 #search_box {
@@ -114,6 +118,10 @@ a {
 .search_result .meta_data {
     line-height: 52px;
     font-size: 1.4em;
+}
+
+.search_result_add {
+    cursor: pointer;
 }
 
 .start-box {
