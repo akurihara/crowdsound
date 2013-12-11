@@ -27,7 +27,7 @@ var initPlaylist = function(playlist) {
     };
    
 	socket.on('playlist', function(object) {
-		if (m_currentSong == null && object.playlist[0] != null) {
+		if (m_currentSong.songName === "" && object.playlist[0] != null) {
   		   m_currentSong = {};
    		   m_currentSong.songName = object.playlist[0].name;
            m_currentSong.artist = object.playlist[0].artist;
@@ -46,13 +46,15 @@ var initPlaylist = function(playlist) {
 
 		    $('.seek').attr({'max': m_currentSong.duration});
 
-		    // busy loop until apiswf loaded
-           while (apiswf == null) {}
+        if (localStorage['isHost'] == 'true') {
+		        // busy loop until apiswf loaded
+            while (apiswf == null) {}
 
-           getRemovePlayed();
-           apiswf.rdio_play(object.playlist[0].key);
-           m_currentSong.isPlaying = true;
-           playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+            getRemovePlayed();
+            apiswf.rdio_play(object.playlist[0].key);
+            m_currentSong.isPlaying = true;
+            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+         }
   		}
 
 	    $(".playlist").empty();

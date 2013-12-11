@@ -6,9 +6,9 @@ var PAUSED = 1;
 var m_id = "HQ12QM";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
-// var m_currentSong = { songName:"", artist:"", album:"", 
-//     rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
-var m_currentSong = null;
+var m_currentSong = { songName:"", artist:"", album:"", 
+     rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
+//var m_currentSong = null;
 var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
@@ -21,8 +21,10 @@ $(document).ready(function() {
         window.location.replace('/');
     }
     */
+    console.log('host: ' + (localStorage['isHost'] == 'true'));
 
-    if (localStorage['isHost']) {
+    if (localStorage['isHost'] == 'true') {
+
         initSearch();
         initPlaylist(m_playlist);
         initHostPlayer();
@@ -40,9 +42,8 @@ $(document).ready(function() {
           swfobject.embedSWF('http://www.rdio.com/api/swf/', // the location of the Rdio Playback API SWF
               'apiswf', // the ID of the element that will be replaced with the SWF
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
-
+          initCallbacks();
     } else {
-        /*
         async.series([
             function(callback) {
                 getPartyData(m_id, function(d1) {
@@ -62,67 +63,74 @@ $(document).ready(function() {
         ], function(err, results) {
             if (err) return;
 
+
             var d1 = results[0];
             m_party.name = d1.partyName;
             m_party.host = d1.partyHost;
             m_party.color = d1.partyColor;
 
             var d2 = results[1];
-            m_currentSong.songName = d2.songName;
-            m_currentSong.artist = d2.artist;
-            m_currentSong.album = d2.album;
-            m_currentSong.rating = d2.rating;
-            m_currentSong.time = d2.time;
-            m_currentSong.duration = d2.duration;
-            m_currentSong.isPlaying= d2.isPlaying;
-            m_currentSong.key=d2.key;
 
+            /*
             var d3 = results[2];
-            m_playlist = d3;
-
+            m_playlist = d3;            
+            m_currentSong.songName = d3[0].songName;
+            m_currentSong.artist = d3[0].artist;
+            m_currentSong.album = d3[0].album;
+            m_currentSong.rating = d3[0].rating;
+            m_currentSong.time = d3[0].time;
+            m_currentSong.duration = d3[0].duration;
+            m_currentSong.isPlaying= d3[0].isPlaying;
+            m_currentSong.key=d3[0].key;
+            */
             initPlaylist(m_playlist);
             populatePartyData();
+            
             initSearch();
             initGuestPlayer();
-            */
             handleMobileBrowser();
             closeLoadingScreen();
-        //});
+        });
     }
 });
 
-// Called once the API SWF has loaded and is ready to accept method calls.
-callback_object.ready = function ready(user) {
-  // find the embed/object element
-  apiswf = $('#apiswf').get(0);
+function initCallbacks() {
+    console.log('host?: ' + localStorage['isHost']);
+    if (localStorage['isHost']) {
+        console.log('callback block');
+        // Called once the API SWF has loaded and is ready to accept method calls.
+        callback_object.ready = function ready(user) {
+          // find the embed/object element
+          apiswf = $('#apiswf').get(0);
 
-};
+        };
 
-    callback_object.positionChanged = function positionChanged(currTime) {
-        var duration = $('.now_playing_song').attr('duration');
-        // song is over
-        if (currTime == duration) {
-            // set all the current song stuff to the next song in queue
-            //$('.now_playing_song').attr({'trackKey': });
+        callback_object.positionChanged = function positionChanged(currTime) {
+            var duration = $('.now_playing_song').attr('duration');
+            // song is over
+            if (currTime == duration) {
+                // set all the current song stuff to the next song in queue
+                //$('.now_playing_song').attr({'trackKey': });
 
-            getRemovePlayed();
-            // start playing next song
-            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+                getRemovePlayed();
+                // start playing next song
+                apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+            }
+
+            
+            var rem = parseInt(duration - currTime, 10);
+            slider.value = (currTime/duration)*slider.max;
+
+            pos = (currTime / duration) * 100,
+            mins = Math.floor(rem/60,10),
+            secs = rem - mins*60;
+                        
+            timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
         }
-
-        
-        var rem = parseInt(duration - currTime, 10);
-        slider.value = (currTime/duration)*slider.max;
-
-        pos = (currTime / duration) * 100,
-        mins = Math.floor(rem/60,10),
-        secs = rem - mins*60;
-                    
-        timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
     }
+}
 
 // socket.io stuff
-
 socket.on('disconnect', function() { 
     console.log('socket.io disconnected');
 });
