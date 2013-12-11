@@ -11,9 +11,9 @@ function getPartyData(id, callback) {
     $.ajax({
         url: "..."
       , 
-    })
-     .done(callback(data));
-     .fail(...);
+    }).done(function(data) {
+        callback(data);
+    });
      */
     return callback(dummyPartyData);
 };
@@ -30,8 +30,8 @@ function getSong(id, callback) {
     return callback(dummySongData);
 };
 
-function addSong(songName, artist, album) {
-
+function addSong(songName, artist, album, callback) {
+    return callback();
 };
 
 /** WARNING: DUMMY DATA LIVES BELOW **/
