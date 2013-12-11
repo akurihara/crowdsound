@@ -21,6 +21,7 @@ $(document).ready(function() {
     if (m_isHost) {
         initSearch();
         initPlaylist(m_playlist);
+        initHostPlayer();
 
         // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
