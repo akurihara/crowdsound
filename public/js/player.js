@@ -35,7 +35,7 @@ function initHostPlayer() {
         if (!m_currentSong.isPlaying) {
             m_currentSong.isPlaying = true;
             playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
-            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+            apiswf.rdio_play();
         } else {
             m_currentSong.isPlaying = false;
             playBtn.removeClass('glyphicon-pause').addClass('glyphicon-play');
@@ -48,35 +48,6 @@ function initHostPlayer() {
         apiswf.rdio_seek($(this).val());
         $(".seek").attr("max", $('.now_playing_song').attr('duration'));
     });
-
-    // callback_object.playStateChanged = function playStateChanged(playState) {
-    //     if (playState == 2) {
-    //         console.log('moving to next song');
-    //         var newSong = $('#playlist_item_0')
-
-    //         // set all the current song stuff to the next song in queue
-    //        m_currentSong.songName = newSong.attr('name');
-    //        m_currentSong.artist = newSong.attr('artist');
-    //        m_currentSong.album = newSong.attr('album');
-    //        m_currentSong.duration = newSong.attr('duration');
-    //        m_currentSong.key= newSong.attr('key');
-
-    //        $('.now_playing_song').html(m_currentSong.songName);
-    //        $('.now_playing_song').attr({'duration': m_currentSong.duration});
-    //         $('.now_playing_artist').html(m_currentSong.artist);
-    //         $('.now_playing_album').html(m_currentSong.album);
-    //         $('.progress').attr("max", m_currentSong.duration);
-
-    //         $('.seek').attr({'max': m_currentSong.duration});
-    //         $('.now_playing_song').attr({'trackKey': m_currentSong.key});
-
-    //         console.log('GET REMOVE PLAYED - end of song');
-    //         // getRemovePlayed();
-    //         postRemoveUnplayed(m_currentSong.key);
-    //         // start playing next song
-    //         apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
-    //     }
-    // }
 
     callback_object.positionChanged = function positionChanged(currTime) {
         var duration = $('.now_playing_song').attr('duration');

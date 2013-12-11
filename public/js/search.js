@@ -6,6 +6,10 @@ function initSearch() {
     // use a debounce plugin for jQuery to limit ajax calls to server
     debounceSearch = $.debounce(function (event) {
         var query = $('#search_box').val();
+        if (query.length == 0) {
+            $(".search_results").empty();
+        }
+
         if (query.length > 3) {
             getSearch(query, m_id, function(results) {
             displaySongs(results);
