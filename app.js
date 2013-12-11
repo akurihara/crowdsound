@@ -6,7 +6,7 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-//var socketio = require('socket.io');
+var socketio = require('socket.io');
 var app = express();
 
 require('./db');
@@ -56,5 +56,5 @@ io.sockets.on('connection', function (socket) {
 });
 */
 
-//exports.sockets = io.sockets;
-//routes.initSockets();
+exports.sockets = io.sockets;
+routes.initSockets();

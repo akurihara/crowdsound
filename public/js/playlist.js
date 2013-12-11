@@ -20,10 +20,41 @@ var initPlaylist = function(playlist) {
                 playlist_item_like: like,
                 playlist_item_key: item.key
             });
+    		
+
+
+    
     };
    
 	socket.on('playlist', function(object) {
-		console.log(object);
+		if (m_currentSong == null && object.playlist[0] != null) {
+  		   m_currentSong = {};
+   		   m_currentSong.songName = object.playlist[0].name;
+           m_currentSong.artist = object.playlist[0].artist;
+           m_currentSong.album = object.playlist[0].album;
+           m_currentSong.rating = object.playlist[0].rating;
+           m_currentSong.time = object.playlist[0].time;
+           m_currentSong.duration = object.playlist[0].duration;
+           m_currentSong.isPlaying= object.playlist[0].isPlaying;
+           m_currentSong.key= object.playlist[0].key;
+
+           $('.now_playing_song').html(m_currentSong.songName);
+           $('.now_playing_song').attr({'duration': m_currentSong.duration});
+		    $('.now_playing_artist').html(m_currentSong.artist);
+		    $('.now_playing_album').html(m_currentSong.album);
+		    $('.progress').attr("max", m_currentSong.duration);
+
+		    $('.seek').attr({'max': m_currentSong.duration});
+
+		    // busy loop until apiswf loaded
+           while (apiswf == null) {}
+
+           getRemovePlayed();
+           apiswf.rdio_play(object.playlist[0].key);
+           m_currentSong.isPlaying = true;
+           playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+  		}
+
 	    $(".playlist").empty();
 	    for (var i=0; i<object.playlist.length; i++) {
 	        var item = object.playlist[i];
@@ -32,7 +63,6 @@ var initPlaylist = function(playlist) {
 	
 	        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
 	        var like = "<span class='glyphicon " + heartState + "'></span>"; 
-	        console.log(item.key);
 	
 	        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
 	            {

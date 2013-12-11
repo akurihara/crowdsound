@@ -6,8 +6,9 @@ var PAUSED = 1;
 var m_id = "HQ12QM";
 var m_party = { name:"", host:"", color:"" }
 var m_playlist = [];
-var m_currentSong = { songName:"", artist:"", album:"", 
-    rating:-1, time:-1, duration:-1, isPlaying:false } 
+// var m_currentSong = { songName:"", artist:"", album:"", 
+//     rating:-1, time:-1, duration:-1, isPlaying:false, key:""} 
+var m_currentSong = null;
 var m_isHost = true;
 var apiswf = null;
 var callback_object = {};
@@ -15,12 +16,16 @@ var socket = io.connect();
 
 $(document).ready(function() {
     initLoadingScreen();
+    /*
+    if (localStorage['isHost'] === undefined) {
+        window.location.replace('/');
+    }
+    */
 
-    // TEMP LOCATION
-
-    if (m_isHost) {
+    if (localStorage['isHost']) {
         initSearch();
         initPlaylist(m_playlist);
+        initHostPlayer();
 
         // on page load use SWFObject to load the API swf into div#apiswf
           var flashvars = {
@@ -36,9 +41,8 @@ $(document).ready(function() {
               'apiswf', // the ID of the element that will be replaced with the SWF
               1, 1, '9.0.0', 'expressInstall.swf', flashvars, params, attributes);
 
-          // TODO: get rid of this
-          $('.now_playing_song').attr({'trackKey': 't2891787', 'duration': 100});
     } else {
+        /*
         async.series([
             function(callback) {
                 getPartyData(m_id, function(d1) {
@@ -71,29 +75,51 @@ $(document).ready(function() {
             m_currentSong.time = d2.time;
             m_currentSong.duration = d2.duration;
             m_currentSong.isPlaying= d2.isPlaying;
+            m_currentSong.key=d2.key;
 
             var d3 = results[2];
             m_playlist = d3;
 
             initPlaylist(m_playlist);
             populatePartyData();
-            initGuestPlayer();
             initSearch();
+            initGuestPlayer();
+            */
             handleMobileBrowser();
             closeLoadingScreen();
-        });
+        //});
     }
 });
 
+// Called once the API SWF has loaded and is ready to accept method calls.
+callback_object.ready = function ready(user) {
+  // find the embed/object element
+  apiswf = $('#apiswf').get(0);
 
-if (m_isHost) {
-    // Called once the API SWF has loaded and is ready to accept method calls.
-    callback_object.ready = function ready(user) {
-      // find the embed/object element
-      apiswf = $('#apiswf').get(0);
-    }; 
-}
+};
 
+    callback_object.positionChanged = function positionChanged(currTime) {
+        var duration = $('.now_playing_song').attr('duration');
+        // song is over
+        if (currTime == duration) {
+            // set all the current song stuff to the next song in queue
+            //$('.now_playing_song').attr({'trackKey': });
+
+            getRemovePlayed();
+            // start playing next song
+            apiswf.rdio_play($('.now_playing_song').attr('trackKey'));
+        }
+
+        
+        var rem = parseInt(duration - currTime, 10);
+        slider.value = (currTime/duration)*slider.max;
+
+        pos = (currTime / duration) * 100,
+        mins = Math.floor(rem/60,10),
+        secs = rem - mins*60;
+                    
+        timeLeft.innerText = '-' + mins + ':' + (secs > 9 ? secs : '0' + secs);
+    }
 
 // socket.io stuff
 
@@ -106,20 +132,20 @@ $(window).resize(function() {
 });
 
 function handleMobileBrowser() {
-    var mq = window.matchMedia( "(max-width: 480px)" );
+    var mq = window.matchMedia( "(max-width: 770px)" );
     if (!mq.matches) {
     } else {
         $(".add_song_button").unbind();
         $(".add_song_button").click(function() {
             async.parallel([
                 function(callback) {
-                    $(".playlist_panel").animate({right: '480px'}, function() {
+                    $(".playlist_panel").animate({right: '770'}, function() {
                         $(".playlist_panel").hide();
                         callback(null, "ok");  
                     });
                 },
                 function(callback) {
-                    $(".m_player_panel").animate({right: '480px'}, function() {
+                    $(".m_player_panel").animate({right: '770'}, function() {
                         $(".m_player_panel").hide();
                         callback(null, "ok");
                     });
@@ -144,7 +170,7 @@ function handleMobileBrowser() {
 
         $(".back_button").unbind();
         $(".back_button").click(function() {
-            $(".search_panel").animate({left: '480px'}, function() {
+            $(".search_panel").animate({left: '770'}, function() {
                 $(".search_panel").hide();
                 $(".m_player_panel").show();
                 $(".playlist_panel").show().css({
