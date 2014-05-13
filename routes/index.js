@@ -103,7 +103,7 @@ exports.addSong = function(req, res) {
 	var data = req.body;
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
-  playlist_db.addTrack(track)
+  playlist_db.addTrack(data.key, data.name, data.artist, data.album, data.duration);
 
   res.end("Song added!");
 	broadcastPlaylist();
@@ -111,12 +111,14 @@ exports.addSong = function(req, res) {
 
 exports.upvote = function(req, res) {
 	playlist.upvote(req.body.key);
+  playlist_db.upvote(req.body.key);
   res.end("Song upvoted!");
 	broadcastPlaylist();
 };
 
 exports.removePlayed = function(req, res) {
 	playlist.removePlayed();
+  playlist_db.removePlayed();
   res.end('Song removed!');
   broadcastPlaylist();
 };
@@ -130,5 +132,7 @@ exports.removeUnplayed = function(req, res) {
 function broadcastPlaylist() {
 	// broadcast updated playlist queue object to all clients
   var sockets = require('../app').sockets;
-	sockets.emit('playlist', { playlist: playlist.queue, currentSong: playlist.currentSong });
+  playlist_db.getQueue(function(list) {
+    sockets.emit('playlist', { playlist: list, currentSong: playlist_db.currentSong });
+  });
 }
