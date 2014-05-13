@@ -1,8 +1,20 @@
 var Track = require('../objects/track');
 var Playlist = require('../objects/playlist_obj');
+var PlaylistDB = require('../objects/playlist_obj_db');
 var playlist = new Playlist.Playlist();
 var global_access_token = "";
 var global_access_token_secret = "";
+
+// Initialize Database Object
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('database connection opened');
+});
+
+var playlist_db = new PlaylistDB.PlaylistDB(mongoose, db);
 
 // Initialize OAuth Object
 var OAuth = require('oauth');
@@ -89,15 +101,10 @@ exports.search = function(req, res) {
 
 exports.addSong = function(req, res) {
 	var data = req.body;
-
-  if (playlist.contains(data.key)) {
-    res.end('Song already in playlist.');
-    return;
-  }
-
 	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
 	playlist.addTrack(track);
-  // res.writeHead(200, { "Content-Type": "application/json" });
+  playlist_db.addTrack(track)
+
   res.end("Song added!");
 	broadcastPlaylist();
 };
