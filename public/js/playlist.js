@@ -35,8 +35,30 @@ var initPlaylist = function(playlist) {
     // update playlist
 	socket.on('playlist', function(object) {
     console.log(object);
+
+  //   if (object.currentSong != null) {
+  //   m_currentSong = {};
+  //        console.log(object.currentSong);
+  //  		   m_currentSong.songName = object.currentSong.name;
+  //          m_currentSong.artist = object.currentSong.artist;
+  //          m_currentSong.album = object.currentSong.album;
+  //          m_currentSong.rating = object.currentSong.rating;
+  //          m_currentSong.time = object.currentSong.time;
+  //          m_currentSong.duration = object.currentSong.duration;
+  //          m_currentSong.isPlaying= object.currentSong.isPlaying;
+  //          m_currentSong.key= object.currentSong.key;
+
+  //          $('.now_playing_song').html(m_currentSong.songName);
+  //          $('.now_playing_song').attr({'duration': m_currentSong.duration});
+		//     $('.now_playing_artist').html(m_currentSong.artist);
+		//     $('.now_playing_album').html(m_currentSong.album);
+		//     $('.progress').attr("max", m_currentSong.duration);
+
+		//     $('.seek').attr({'max': m_currentSong.duration});
+		// }
+
 		if (m_currentSong.songName === "" && object.currentSong != null) {
-  		   m_currentSong = {};
+			m_currentSong = {};
          console.log(object.currentSong);
    		   m_currentSong.songName = object.currentSong.name;
            m_currentSong.artist = object.currentSong.artist;
@@ -54,17 +76,39 @@ var initPlaylist = function(playlist) {
 		    $('.progress').attr("max", m_currentSong.duration);
 
 		    $('.seek').attr({'max': m_currentSong.duration});
-        if (localStorage['isHost'] == 'true') {
-		        // busy loop until apiswf loaded
-            while (apiswf == null) {}
 
-            console.log('GET REMOVE PLAYED - start');
-            // getRemovePlayed();
-            postRemoveUnplayed(m_currentSong.key);
-            apiswf.rdio_play(object.currentSong.key);
-            m_currentSong.isPlaying = true;
-            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
-         }
+			$('.seek').show();
+			$('.play_button').show();
+	        if (localStorage['isHost'] == 'true') {
+			        // busy loop until apiswf loaded
+	            while (apiswf == null) {}
+
+	            console.log('GET REMOVE PLAYED - start');
+	            getRemovePlayed();
+	            // postRemoveUnplayed(m_currentSong.key);
+	            apiswf.rdio_play(object.currentSong.key);
+	            m_currentSong.isPlaying = true;
+	            playBtn.removeClass('glyphicon-play').addClass('glyphicon-pause');
+	         }
+  		} else if (object.currentSong != null) {
+  			m_currentSong = {};
+         console.log(object.currentSong);
+   		   m_currentSong.songName = object.currentSong.name;
+           m_currentSong.artist = object.currentSong.artist;
+           m_currentSong.album = object.currentSong.album;
+           m_currentSong.rating = object.currentSong.rating;
+           m_currentSong.time = object.currentSong.time;
+           m_currentSong.duration = object.currentSong.duration;
+           m_currentSong.isPlaying= object.currentSong.isPlaying;
+           m_currentSong.key= object.currentSong.key;
+
+           $('.now_playing_song').html(m_currentSong.songName);
+           $('.now_playing_song').attr({'duration': m_currentSong.duration});
+		    $('.now_playing_artist').html(m_currentSong.artist);
+		    $('.now_playing_album').html(m_currentSong.album);
+		    $('.progress').attr("max", m_currentSong.duration);
+
+		    $('.seek').attr({'max': m_currentSong.duration});
   		}
 
 	    $(".playlist").empty();
@@ -75,7 +119,8 @@ var initPlaylist = function(playlist) {
 	        var d = "<div id='playlist_item_"+i+"' key='"+item.key+"' name='"+item.name+"' artist='"+item.artist+"' album='"+item.album+"' duration='"+item.duration+"'></div>";
 	        $(".playlist").append(d);
 	
-	        var heartState = item.like ? "glyphicon-heart" : "glyphicon-heart-empty";
+	        var heartState = likedSongs[item.key] !== undefined ? "glyphicon-heart" : "glyphicon-heart-empty";
+	        console.log(item.key + " " + likedSongs[item.key]);
 	        var like = "<span trackkey='" + item.key + "' class='likeable glyphicon " + heartState + "'></span>"; 
 	
 	        $("#playlist_item_"+i).loadTemplate($("#playlist_item"),
@@ -94,9 +139,13 @@ var initPlaylist = function(playlist) {
         $(".likeable").each(function() {
         	$(this).unbind();
         	$(this).click(function() {
-           		var trackKey = $(this).attr("trackkey");
-                console.log(trackKey);
-                postUpvote(trackKey);
+        		var trackKey = $(this).attr("trackkey");
+        		if (likedSongs[$.trim(trackKey)] === undefined) {
+                	console.log(trackKey);
+                	postUpvote(trackKey);
+                	likedSongs[trackKey] = "true";
+        		}
+
         	});
     	}); //likeable each    
 	});	//socket

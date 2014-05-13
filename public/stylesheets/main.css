@@ -25,12 +25,16 @@ object {
     display: none; 
 }
 
+.glyphicon-heart {
+    font-size: 28px;
+}
+
 .glyphicon-heart, .glyphicon-heart-empty {
     color: #ccc;
     font-size: 28px;
 }
 
-.glyphicon-heart:hover, .glyphicon-heart-empty:hover {
+.glyphicon-heart-empty:hover {
     color: #000;
 }
 
@@ -190,7 +194,6 @@ object {
 
 .party_code {
 	line-height:1em;
-	display:none ! important;
 }
 
 .logo {

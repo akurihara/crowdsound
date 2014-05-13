@@ -41,7 +41,7 @@
         display: none;
     }
 
-    .glyphicon-heart, .glyphicon-heart-empty {
+    .glyphicon-heart-empty {
         color: #ccc;
         font-size: 28px;
     }
