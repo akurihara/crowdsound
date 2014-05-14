@@ -47,9 +47,11 @@
                 <!-- player_panel is only compatible for host user -->
                 <div class="row player_panel">
                     <div class="col-sm-3">
-                        <span class="button glyphicon glyphicon-step-backward restart_button"></span>
-                        <span class="button glyphicon glyphicon-play play_button"></span>
-                        <span class="button glyphicon glyphicon-step-forward forward_button"></span>
+                        <div class="playback-buttons">
+                            <span class="button glyphicon glyphicon-step-backward restart_button"></span>
+                            <span class="button glyphicon glyphicon-play play_button"></span>
+                            <span class="button glyphicon glyphicon-step-forward forward_button"></span>
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
@@ -64,10 +66,10 @@
                         <p id="time_left"/>
                     </div>
                     <div class="col-sm-3">
-                        <!-- <span id="volume" href="#volume" class="glyphicon glyphicon-volume-down"></span>  
+                        <span id="volume" href="#volume" class="glyphicon glyphicon-volume-down"></span>  
                         <div id="slider" class="pull-right">
                             <div id="range"/></div> 
-                        </div> -->
+                        </div>
                     </div>
     		    </div>
             </div>

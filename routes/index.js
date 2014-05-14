@@ -91,8 +91,9 @@ exports.search = function(req, res) {
     	search_results.forEach(function(track) {
     		track.song_name = track.name;
 
-        var inPlaylist = playlist.contains(track.key);
-        track.inPlaylist = inPlaylist;
+        //var inPlaylist = playlist.contains(track.key);
+        // TODO: Implement checking whether song is in playlist
+        track.inPlaylist = false;
     	});
     	res.send(search_results);
     }
@@ -101,8 +102,8 @@ exports.search = function(req, res) {
 
 exports.addSong = function(req, res) {
 	var data = req.body;
-	var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
-	playlist.addTrack(track);
+	//var track = new Track.Track(data.key, data.name, data.artist, data.album, data.duration);
+	//playlist.addTrack(track);
   playlist_db.addTrack(data.key, data.name, data.artist, data.album, data.duration);
 
   res.end("Song added!");
@@ -110,27 +111,27 @@ exports.addSong = function(req, res) {
 };
 
 exports.upvote = function(req, res) {
-	playlist.upvote(req.body.key);
+	//playlist.upvote(req.body.key);
   playlist_db.upvote(req.body.key);
   res.end("Song upvoted!");
 	broadcastPlaylist();
 };
 
 exports.removePlayed = function(req, res) {
-	playlist.removePlayed();
-  playlist_db.removePlayed();
+	//playlist.removePlayed();
+  playlist_db.removePlayed(broadcastPlaylist);
   res.end('Song removed!');
-  broadcastPlaylist();
 };
 
 exports.removeUnplayed = function(req, res) {
-	playlist.removeUnplayed(req.body.key);
-  res.end('Song removed!');
+	//playlist.removeUnplayed(req.body.key);
+  res.end('remove unplayed - not implemented');
 	broadcastPlaylist();
 };
 
 function broadcastPlaylist() {
 	// broadcast updated playlist queue object to all clients
+  console.log('broadcasting playlist');
   var sockets = require('../app').sockets;
   playlist_db.getQueue(function(list) {
     sockets.emit('playlist', { playlist: list, currentSong: playlist_db.currentSong });

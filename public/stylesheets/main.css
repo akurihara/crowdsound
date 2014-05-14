@@ -217,8 +217,8 @@ object {
 }
 
 .player_panel .button {
-	margin-top:10px;
-	font-size: 28px;
+	margin-top: 25px;
+	font-size: 35px;
 }
 .player {
 	-webkit-box-sizing: border-box;
@@ -234,7 +234,7 @@ object {
 }
 
 .seek{
-    display:none\9!important;
+    /* display:none\9!important; */
     -webkit-appearance: none;
     height: 8px;
     width: 90%;
@@ -255,6 +255,8 @@ object {
 
 .progress {
     height: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     color: #ccc;
     border-radius: 0px;
     width: 100%;
@@ -268,6 +270,7 @@ progress::-webkit-progress-bar{
     background-color: #ccc;
 }
 
+/*
 .forward_button {
 	display:none	! important;
 }
@@ -275,6 +278,7 @@ progress::-webkit-progress-bar{
 .restart_button {
 	display:none	! important;
 }
+*/
 
 .button {
 	display: inline-block;
@@ -285,10 +289,13 @@ progress::-webkit-progress-bar{
     cursor: pointer;
 }
 #volume {
-	display:none;
+	/* display:none; */
 	width: 10%;
-	font-size: 25px;
+	font-size: 35px;
+    color: #B0AEB0;
+    margin-top: 20px;
 }
+
 #time_left {
 	width: 100%;
 	text-align: right;
@@ -297,6 +304,8 @@ progress::-webkit-progress-bar{
 	height: 5px;
 	width: 80%;
 	top: 5px;
+    background: #5b9ce8;
+    margin-top: 33px;
 }
 a.ui-slider-handle.ui-state-default {  
     position: absolute;  

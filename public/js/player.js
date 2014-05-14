@@ -56,14 +56,14 @@ function initHostPlayer() {
             var newSong = $('#playlist_item_0')
 
             // set all the current song stuff to the next song in queue
-           m_currentSong.songName = newSong.attr('name');
-           m_currentSong.artist = newSong.attr('artist');
-           m_currentSong.album = newSong.attr('album');
-           m_currentSong.duration = newSong.attr('duration');
-           m_currentSong.key= newSong.attr('key');
+            m_currentSong.songName = newSong.attr('name');
+            m_currentSong.artist = newSong.attr('artist');
+            m_currentSong.album = newSong.attr('album');
+            m_currentSong.duration = newSong.attr('duration');
+            m_currentSong.key= newSong.attr('key');
 
-           $('.now_playing_song').html(m_currentSong.songName);
-           $('.now_playing_song').attr({'duration': m_currentSong.duration});
+            $('.now_playing_song').html(m_currentSong.songName);
+            $('.now_playing_song').attr({'duration': m_currentSong.duration});
             $('.now_playing_artist').html(m_currentSong.artist);
             $('.now_playing_album').html(m_currentSong.album);
             $('.progress').attr("max", m_currentSong.duration);

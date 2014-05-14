@@ -53,14 +53,16 @@ exports.PlaylistDB.prototype.upvote = function(trackKey) {
 }
 
 // removes a song from the queue because it is now playing
-exports.PlaylistDB.prototype.removePlayed = function() {
+exports.PlaylistDB.prototype.removePlayed = function(callback) {
+	var playlist_db = this;
 
 	this.Track.find().sort('-numLikes').exec(function(err, result) {
 		topTrack = result[0];
-		console.log('[akurihar] removing ' + topTrack.name);
-		this.currentSong = result[0];
-		this.Track.remove({ key : topTrack.key}, function(err) {
+		console.log(topTrack);
+		playlist_db.currentSong = result[0];
+		playlist_db.Track.remove({ key : topTrack.key}, function(err) {
 			if (err) return console.error(err);
+			callback();
 		});
 	});
 }
@@ -68,13 +70,6 @@ exports.PlaylistDB.prototype.removePlayed = function() {
 // removes a track elsewhere in the queue - only host can do this
 exports.PlaylistDB.prototype.removeUnplayed = function(trackKey) {
 	// TODO
-}
-
-exports.PlaylistDB.prototype.contains = function(trackKey) {
-	return (this.queueMap[trackKey] !== undefined);
-
-	//this.Track.findOne({ occupation: trackKey }).exec();
-
 }
 
 exports.PlaylistDB.prototype.getQueue = function(callback) {
